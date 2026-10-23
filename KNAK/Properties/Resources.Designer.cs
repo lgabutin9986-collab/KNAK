@@ -63,9 +63,9 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap exit_button_1_ {
+        internal static System.Drawing.Bitmap back {
             get {
-                object obj = ResourceManager.GetObject("exit button(1)", resourceCulture);
+                object obj = ResourceManager.GetObject("back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,49 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kainan_logo__1__removebg_preview {
+        internal static System.Drawing.Bitmap cart_button_removebg_preview {
             get {
-                object obj = ResourceManager.GetObject("kainan_logo__1_-removebg-preview", resourceCulture);
+                object obj = ResourceManager.GetObject("cart_button-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap endless_button_locked_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("endless_button_locked-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exit_button_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("exit_button-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap kainan_logo_removebg_preview1 {
+            get {
+                object obj = ResourceManager.GetObject("kainan_logo-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap next {
+            get {
+                object obj = ResourceManager.GetObject("next", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +133,9 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap story_mode_buttom__1_ {
+        internal static System.Drawing.Bitmap story_mode_buttom_removebg_preview {
             get {
-                object obj = ResourceManager.GetObject("story mode buttom (1)", resourceCulture);
+                object obj = ResourceManager.GetObject("story_mode_buttom-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +143,59 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap tuts_button {
+        internal static System.Drawing.Bitmap tutorial1 {
             get {
-                object obj = ResourceManager.GetObject("tuts button", resourceCulture);
+                object obj = ResourceManager.GetObject("tutorial1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tutorial2 {
+            get {
+                object obj = ResourceManager.GetObject("tutorial2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tutorial3 {
+            get {
+                object obj = ResourceManager.GetObject("tutorial3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tutorial4 {
+            get {
+                object obj = ResourceManager.GetObject("tutorial4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tutorial5 {
+            get {
+                object obj = ResourceManager.GetObject("tutorial5", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tuts_button_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("tuts_button-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
