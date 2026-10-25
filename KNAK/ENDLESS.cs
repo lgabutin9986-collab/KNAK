@@ -25,7 +25,13 @@ namespace KNAK
 
         // Mga variables para sa Tapa
         string tapaState = "EMPTY";
-        int tapaSecondsCount = 0; 
+        int tapaSecondsCount = 0;
+
+        // Mga variables para sa Pares
+        int paresServingsLeft = 3;// May capacity na 3bowls
+        bool isCookingPares = false;
+        int paresProgressValue = 0;
+
         public ENDLESS()
         {
             InitializeComponent();
@@ -45,7 +51,7 @@ namespace KNAK
             // --- SIMULA NG LARO ---
             // Puno ang rice cooker
             pbRiceCooker.Image = Properties.Resources.rice_cooker_full;
-            lblRiceStatus.Text = "Handa na ang kanin (" + riceServingsLeft + "/5 cups)";
+            lblRiceStatus.Text = "Handa na ang kanin (" + riceServingsLeft + "/3 Cups)";
             pbRiceProgress.Visible = false; // Nakatago ang progress bar habang may kanin pa
 
             // Itago muna ang lahat ng 4 na trays at 4 na plates sa simula
@@ -392,6 +398,77 @@ namespace KNAK
                 pbTapaProgress.Visible = false;
                 lblTapaStatus.Visible = false;
                 tapaSecondsCount = 0;
+            }
+        }
+
+        private void timerPares_Tick(object sender, EventArgs e)
+        {
+            paresProgressValue++;
+            pbParesProgress.Value = (paresProgressValue * 10); // 10 steps para umabot sa 100% (10 seconds)
+
+            if (paresProgressValue >= 10)
+            {
+                timerPares.Stop();
+                isCookingPares = false;
+                paresServingsLeft = 5; // Balik sa 5 servings
+
+                pbParesPot.Image = Properties.Resources.pares_pot_full; // Palitan ng tamang resource mo para sa puno na pot
+                lblParesStatus.Text = paresServingsLeft + "/3 bowls";
+                pbParesProgress.Visible = false;
+            }
+        }
+
+        private void pbParesPot_Click(object sender, EventArgs e)
+        {
+            // KASO 1: Kung may natitira pang pares bowls at HINDI pa nagluluto/nagrerefill
+            if (paresServingsLeft > 0 && !isCookingPares)
+            {
+                // Ilalagay natin ang hiwalay na pares bowl sa bakanteng tray/spot (sunod-sunod sa Tray 1, Tray 2, Tray 3)
+                // Dito natin iche-check kung alin ang bakanteng pares bowl picturebox sa mga tray niyo:
+                if (!pbParesBowl1.Visible) // O kung ano man ang exact name ng pares bowl para sa unang tray
+                {
+                    paresServingsLeft--;
+                    pbParesBowl1.Visible = true;
+                    pbParesBowl1.Image = Properties.Resources.pares_bowl; // Ang sarili niyang creative asset
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
+                }
+                else if (!pbParesBowl2.Visible)
+                {
+                    paresServingsLeft--;
+                    pbParesBowl2.Visible = true;
+                    pbParesBowl2.Image = Properties.Resources.pares_bowl;
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
+                }
+                else if (!pbParesBowl3.Visible)
+                {
+                    paresServingsLeft--;
+                    pbParesBowl3.Visible = true;
+                    pbParesBowl3.Image = Properties.Resources.pares_bowl;
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
+                }
+                else
+                {
+                    lblParesStatus.Text = "Puno na ang mga pares bowls sa trays!";
+                    return;
+                }
+
+                // Kapag naubos na ang 5 bowls
+                if (paresServingsLeft <= 0)
+                {
+                    pbParesPot.Image = Properties.Resources.pares_pot_empty; // Pot na walang laman
+                    lblParesStatus.Text = "Click to refill!";
+                }
+            }
+            // KASO 2: Kung ubos na at kailangan i-refill (10 seconds)
+            else if (paresServingsLeft <= 0 && !isCookingPares)
+            {
+                lblParesStatus.Text = "Refilling Pares...";
+                paresProgressValue = 0;
+                pbParesProgress.Value = 0;
+                pbParesProgress.Visible = true;
+                isCookingPares = true;
+
+                timerPares.Start();
             }
         }
 

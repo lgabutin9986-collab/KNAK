@@ -59,6 +59,13 @@
             timerTapa = new System.Windows.Forms.Timer(components);
             pbTapaProgress = new ProgressBar();
             lblTapaStatus = new Label();
+            pbParesPot = new PictureBox();
+            lblParesStatus = new Label();
+            pbParesProgress = new ProgressBar();
+            timerPares = new System.Windows.Forms.Timer(components);
+            pbParesBowl1 = new PictureBox();
+            pbParesBowl2 = new PictureBox();
+            pbParesBowl3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -74,6 +81,10 @@
             ((System.ComponentModel.ISupportInitialize)pbEggOnPan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbRawTapa).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbTapaOnPan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesPot).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl3).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -176,11 +187,11 @@
             lblRiceStatus.BackColor = Color.Transparent;
             lblRiceStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRiceStatus.ForeColor = SystemColors.HighlightText;
-            lblRiceStatus.Location = new Point(15, 399);
+            lblRiceStatus.Location = new Point(14, 399);
             lblRiceStatus.Name = "lblRiceStatus";
-            lblRiceStatus.Size = new Size(85, 17);
+            lblRiceStatus.Size = new Size(99, 17);
             lblRiceStatus.TabIndex = 8;
-            lblRiceStatus.Text = "Tap to get!";
+            lblRiceStatus.Text = "Rice Cooker";
             // 
             // timerRice
             // 
@@ -320,10 +331,9 @@
             lblEggStatus.ForeColor = SystemColors.HighlightText;
             lblEggStatus.Location = new Point(153, 398);
             lblEggStatus.Name = "lblEggStatus";
-            lblEggStatus.Size = new Size(85, 17);
+            lblEggStatus.Size = new Size(78, 17);
             lblEggStatus.TabIndex = 22;
-            lblEggStatus.Text = "Tap to get!";
-            lblEggStatus.Visible = false;
+            lblEggStatus.Text = "Fried Egg";
             // 
             // pbRawTapa
             // 
@@ -371,10 +381,82 @@
             lblTapaStatus.ForeColor = SystemColors.HighlightText;
             lblTapaStatus.Location = new Point(258, 398);
             lblTapaStatus.Name = "lblTapaStatus";
-            lblTapaStatus.Size = new Size(85, 17);
+            lblTapaStatus.Size = new Size(44, 17);
             lblTapaStatus.TabIndex = 26;
-            lblTapaStatus.Text = "Tap to get!";
-            lblTapaStatus.Visible = false;
+            lblTapaStatus.Text = "Tapa";
+            // 
+            // pbParesPot
+            // 
+            pbParesPot.BackColor = Color.Transparent;
+            pbParesPot.Image = (Image)resources.GetObject("pbParesPot.Image");
+            pbParesPot.Location = new Point(425, 288);
+            pbParesPot.Name = "pbParesPot";
+            pbParesPot.Size = new Size(118, 131);
+            pbParesPot.SizeMode = PictureBoxSizeMode.Zoom;
+            pbParesPot.TabIndex = 27;
+            pbParesPot.TabStop = false;
+            pbParesPot.Click += pbParesPot_Click;
+            // 
+            // lblParesStatus
+            // 
+            lblParesStatus.AutoSize = true;
+            lblParesStatus.BackColor = Color.Transparent;
+            lblParesStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblParesStatus.ForeColor = SystemColors.HighlightText;
+            lblParesStatus.Location = new Point(457, 402);
+            lblParesStatus.Name = "lblParesStatus";
+            lblParesStatus.Size = new Size(51, 17);
+            lblParesStatus.TabIndex = 28;
+            lblParesStatus.Text = "Pares";
+            // 
+            // pbParesProgress
+            // 
+            pbParesProgress.Location = new Point(435, 418);
+            pbParesProgress.Name = "pbParesProgress";
+            pbParesProgress.Size = new Size(96, 20);
+            pbParesProgress.TabIndex = 29;
+            pbParesProgress.Visible = false;
+            // 
+            // timerPares
+            // 
+            timerPares.Interval = 1000;
+            timerPares.Tick += timerPares_Tick;
+            // 
+            // pbParesBowl1
+            // 
+            pbParesBowl1.BackColor = Color.DarkGray;
+            pbParesBowl1.Image = (Image)resources.GetObject("pbParesBowl1.Image");
+            pbParesBowl1.Location = new Point(116, 221);
+            pbParesBowl1.Name = "pbParesBowl1";
+            pbParesBowl1.Size = new Size(55, 54);
+            pbParesBowl1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbParesBowl1.TabIndex = 30;
+            pbParesBowl1.TabStop = false;
+            pbParesBowl1.Visible = false;
+            // 
+            // pbParesBowl2
+            // 
+            pbParesBowl2.BackColor = Color.DarkGray;
+            pbParesBowl2.Image = (Image)resources.GetObject("pbParesBowl2.Image");
+            pbParesBowl2.Location = new Point(304, 221);
+            pbParesBowl2.Name = "pbParesBowl2";
+            pbParesBowl2.Size = new Size(55, 54);
+            pbParesBowl2.SizeMode = PictureBoxSizeMode.Zoom;
+            pbParesBowl2.TabIndex = 31;
+            pbParesBowl2.TabStop = false;
+            pbParesBowl2.Visible = false;
+            // 
+            // pbParesBowl3
+            // 
+            pbParesBowl3.BackColor = Color.DarkGray;
+            pbParesBowl3.Image = (Image)resources.GetObject("pbParesBowl3.Image");
+            pbParesBowl3.Location = new Point(506, 221);
+            pbParesBowl3.Name = "pbParesBowl3";
+            pbParesBowl3.Size = new Size(55, 54);
+            pbParesBowl3.SizeMode = PictureBoxSizeMode.Zoom;
+            pbParesBowl3.TabIndex = 32;
+            pbParesBowl3.TabStop = false;
+            pbParesBowl3.Visible = false;
             // 
             // ENDLESS
             // 
@@ -383,6 +465,12 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(pbParesBowl3);
+            Controls.Add(pbParesBowl2);
+            Controls.Add(pbParesBowl1);
+            Controls.Add(pbParesProgress);
+            Controls.Add(lblParesStatus);
+            Controls.Add(pbParesPot);
             Controls.Add(lblTapaStatus);
             Controls.Add(pbTapaProgress);
             Controls.Add(pbTapaOnPan);
@@ -426,6 +514,10 @@
             ((System.ComponentModel.ISupportInitialize)pbEggOnPan).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbRawTapa).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbTapaOnPan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesPot).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbParesBowl3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -461,5 +553,12 @@
         private System.Windows.Forms.Timer timerTapa;
         private ProgressBar pbTapaProgress;
         private Label lblTapaStatus;
+        private PictureBox pbParesPot;
+        private Label lblParesStatus;
+        private ProgressBar pbParesProgress;
+        private System.Windows.Forms.Timer timerPares;
+        private PictureBox pbParesBowl1;
+        private PictureBox pbParesBowl2;
+        private PictureBox pbParesBowl3;
     }
 }
