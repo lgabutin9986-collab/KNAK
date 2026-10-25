@@ -89,6 +89,7 @@ namespace KNAK
             btnEndless.Size = new Size(229, 67);
             btnEndless.TabIndex = 11;
             btnEndless.UseVisualStyleBackColor = false;
+            btnEndless.Click += btnEndless_Click;
             // 
             // btnExit
             // 
