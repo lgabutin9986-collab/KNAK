@@ -208,4 +208,40 @@
   <data name="noeggbowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noeggbowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="cooking_egg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cooking_egg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cooked_egg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cooked_egg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="burned_egg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\burned_egg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plate_with_rice_and_egg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plate with rice and egg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="burned_tapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\burned_tapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cooked_tapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cooked_tapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cooking_tapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cooking_tapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plate_with_tapsilog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plate_with_tapsilog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pares_pot_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pares pot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pares_pot_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty pares pot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pares_bowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bowl of pares.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="red_x" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\strike _x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
