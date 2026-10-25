@@ -15,5 +15,7 @@ namespace KNAK
 
         // 3. Kasalukuyang Araw sa Campaign Mode (Day 1 hanggang 7)
         public static int CurrentDay { get; set; } = 1;
+        public static int EndlessHighScore { get; set; } = 5450; // Halimbawang simula o default
+
     }
 }
