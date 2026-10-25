@@ -11,8 +11,9 @@ namespace KNAK
 {
     public partial class ENDLESS : Form
     {
-        private int currentScore = 0;
-        private int totalSeconds = 0;
+        int currentScore = 0;   
+        int highScore = 0; // O kung ano man ang nakalagay sa high score mo
+        int strikeCount = 0;
 
         // Rice Cooker at Plate Status Variables
         private int riceServingsLeft = 3;// Hanggang 5 cups/servings lang
@@ -62,14 +63,6 @@ namespace KNAK
             pbPlate2.Visible = false;
             pbPlate3.Visible = false;
             pbPlate4.Visible = false;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            totalSeconds++;
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            lblTimeElapsed.Text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
         }
 
         // --- RICE COOKER & PLATES LOGIC ---
@@ -238,6 +231,35 @@ namespace KNAK
             {
                 GameData.EndlessHighScore = currentScore;
                 lblHighscore.Text = "₱" + GameData.EndlessHighScore.ToString("N0");
+            }
+        }
+        // Halimbawa ito ng method o event kapag nag-walkout ang isang customer
+        private void CustomerWalkout()
+        {
+            strikeCount++;
+
+            // Baguhin ang circle creatives depende sa bilang ng strike
+            if (strikeCount == 1)
+            {
+                pbCircle1.Image = Properties.Resources.red_x; // O kung ano mang creative asset ng strike mo
+            }
+            else if (strikeCount == 2)
+            {
+                pbCircle2.Image = Properties.Resources.red_x;
+            }
+            else if (strikeCount >= 3)
+            {
+                pbCircle3.Image = Properties.Resources.red_x;
+
+                // --- GAME OVER LOGIC ---
+                timerEgg.Stop();
+                timerTapa.Stop();
+                timerRice.Stop();
+                timerPares.Stop();
+
+                MessageBox.Show("GAME OVER! Umabot sa 3 ang walkout/strikes mo.\nKabuuang Nakuha Mo: ₱" + currentScore.ToString("N0"), "Laro Tapos Na", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Pwede mo rito ilagay ang pagbalik sa Main Menu o pag-reset
             }
         }
         private void pbEggOnPan_Click(object sender, EventArgs e)

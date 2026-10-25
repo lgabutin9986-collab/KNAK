@@ -33,8 +33,6 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label1 = new Label();
-            lblTimeElapsed = new Label();
-            timer1 = new System.Windows.Forms.Timer(components);
             pictureBox3 = new PictureBox();
             lblHighscore = new Label();
             lblCurrentScore = new Label();
@@ -66,6 +64,9 @@
             pbParesBowl1 = new PictureBox();
             pbParesBowl2 = new PictureBox();
             pbParesBowl3 = new PictureBox();
+            pbCircle1 = new PictureBox();
+            pbCircle2 = new PictureBox();
+            pbCircle3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -85,6 +86,9 @@
             ((System.ComponentModel.ISupportInitialize)pbParesBowl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbParesBowl2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbParesBowl3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle3).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -115,27 +119,9 @@
             label1.ForeColor = SystemColors.ControlLightLight;
             label1.Location = new Point(93, 14);
             label1.Name = "label1";
-            label1.Size = new Size(131, 17);
+            label1.Size = new Size(84, 17);
             label1.TabIndex = 2;
-            label1.Text = "TIME ELAPSED:";
-            // 
-            // lblTimeElapsed
-            // 
-            lblTimeElapsed.AutoSize = true;
-            lblTimeElapsed.BackColor = Color.FromArgb(128, 64, 0);
-            lblTimeElapsed.Font = new Font("Cooper Black", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTimeElapsed.ForeColor = SystemColors.ControlLightLight;
-            lblTimeElapsed.Location = new Point(103, 36);
-            lblTimeElapsed.Name = "lblTimeElapsed";
-            lblTimeElapsed.Size = new Size(0, 17);
-            lblTimeElapsed.TabIndex = 3;
-            lblTimeElapsed.Click += label2_Click;
-            // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Interval = 1000;
-            timer1.Tick += timer1_Tick;
+            label1.Text = "STRIKES:";
             // 
             // pictureBox3
             // 
@@ -458,6 +444,39 @@
             pbParesBowl3.TabStop = false;
             pbParesBowl3.Visible = false;
             // 
+            // pbCircle1
+            // 
+            pbCircle1.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle1.Image = (Image)resources.GetObject("pbCircle1.Image");
+            pbCircle1.Location = new Point(101, 29);
+            pbCircle1.Name = "pbCircle1";
+            pbCircle1.Size = new Size(38, 31);
+            pbCircle1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle1.TabIndex = 33;
+            pbCircle1.TabStop = false;
+            // 
+            // pbCircle2
+            // 
+            pbCircle2.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle2.Image = (Image)resources.GetObject("pbCircle2.Image");
+            pbCircle2.Location = new Point(139, 29);
+            pbCircle2.Name = "pbCircle2";
+            pbCircle2.Size = new Size(38, 31);
+            pbCircle2.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle2.TabIndex = 34;
+            pbCircle2.TabStop = false;
+            // 
+            // pbCircle3
+            // 
+            pbCircle3.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle3.Image = (Image)resources.GetObject("pbCircle3.Image");
+            pbCircle3.Location = new Point(176, 29);
+            pbCircle3.Name = "pbCircle3";
+            pbCircle3.Size = new Size(38, 31);
+            pbCircle3.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle3.TabIndex = 35;
+            pbCircle3.TabStop = false;
+            // 
             // ENDLESS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -465,6 +484,9 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(pbCircle3);
+            Controls.Add(pbCircle2);
+            Controls.Add(pbCircle1);
             Controls.Add(pbParesBowl3);
             Controls.Add(pbParesBowl2);
             Controls.Add(pbParesBowl1);
@@ -492,7 +514,6 @@
             Controls.Add(lblCurrentScore);
             Controls.Add(lblHighscore);
             Controls.Add(pictureBox3);
-            Controls.Add(lblTimeElapsed);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -518,6 +539,9 @@
             ((System.ComponentModel.ISupportInitialize)pbParesBowl1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbParesBowl2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbParesBowl3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -527,8 +551,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label1;
-        private Label lblTimeElapsed;
-        private System.Windows.Forms.Timer timer1;
         private PictureBox pictureBox3;
         private Label lblHighscore;
         private Label lblCurrentScore;
@@ -560,5 +582,8 @@
         private PictureBox pbParesBowl1;
         private PictureBox pbParesBowl2;
         private PictureBox pbParesBowl3;
+        private PictureBox pbCircle1;
+        private PictureBox pbCircle2;
+        private PictureBox pbCircle3;
     }
 }
