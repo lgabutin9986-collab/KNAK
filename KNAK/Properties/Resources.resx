@@ -208,4 +208,43 @@
   <data name="noeggbowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noeggbowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bowltapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bowltapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="parespot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\parespot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pares" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pares.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="emptypot" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\emptypot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tapsilog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tapsilog.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tapsi" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tapsi.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="uncookedegg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\raw_egg-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="eggrice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eggrice.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cookedegg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cooked_egg-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="burnedegg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\burned_egg-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="burnedtapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\burnedtapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cookedtapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cookedtapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rawtapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rawtapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
