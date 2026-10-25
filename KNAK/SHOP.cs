@@ -122,14 +122,4 @@ namespace KNAK
         private void pictureBox7_Click(object sender, EventArgs e) { }
         private void SHOP_Load(object sender, EventArgs e) { }
     }
-
-    // Pansamantalang data holder para sa shop mo
-    public static class GameData
-    {
-        public static int PlayerMoney { get; set; } = 1500;
-        public static bool HasDoubleBurner { get; set; } = false;
-        public static bool HasHeavyDeepFryer { get; set; } = false;
-        public static bool HasCommercialDispenser { get; set; } = false;
-        public static bool HasPremiumBeef { get; set; } = false;
-    }
 }
