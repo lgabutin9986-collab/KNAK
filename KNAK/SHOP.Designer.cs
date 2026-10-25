@@ -41,7 +41,7 @@
             btnBuy2 = new PictureBox();
             btnBuy3 = new PictureBox();
             btnBuy4 = new PictureBox();
-            lblSales = new TextBox();
+            lblSales = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnCloseShop).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -67,7 +67,6 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-
             // 
             // btnCloseShop
             // 
@@ -79,12 +78,13 @@
             btnCloseShop.SizeMode = PictureBoxSizeMode.Zoom;
             btnCloseShop.TabIndex = 1;
             btnCloseShop.TabStop = false;
+            btnCloseShop.Click += btnCloseShop_Click;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Transparent;
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(577, 18);
+            pictureBox3.Location = new Point(568, 17);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(135, 49);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -95,7 +95,7 @@
             // 
             Benta.BackColor = Color.Transparent;
             Benta.Image = (Image)resources.GetObject("Benta.Image");
-            Benta.Location = new Point(594, -1);
+            Benta.Location = new Point(577, -1);
             Benta.Name = "Benta";
             Benta.Size = new Size(116, 23);
             Benta.SizeMode = PictureBoxSizeMode.Zoom;
@@ -134,7 +134,7 @@
             btnBuyDispenser.SizeMode = PictureBoxSizeMode.Zoom;
             btnBuyDispenser.TabIndex = 6;
             btnBuyDispenser.TabStop = false;
-            btnBuyDispenser.Click += this.pictureBox7_Click;
+            btnBuyDispenser.Click += pictureBox7_Click;
             // 
             // btnBuyBeef
             // 
@@ -157,6 +157,7 @@
             btnBuy1.SizeMode = PictureBoxSizeMode.Zoom;
             btnBuy1.TabIndex = 8;
             btnBuy1.TabStop = false;
+            btnBuy1.Click += btnBuy1_Click;
             // 
             // btnBuy2
             // 
@@ -168,6 +169,7 @@
             btnBuy2.SizeMode = PictureBoxSizeMode.Zoom;
             btnBuy2.TabIndex = 9;
             btnBuy2.TabStop = false;
+            btnBuy2.Click += btnBuy2_Click;
             // 
             // btnBuy3
             // 
@@ -179,6 +181,7 @@
             btnBuy3.SizeMode = PictureBoxSizeMode.Zoom;
             btnBuy3.TabIndex = 10;
             btnBuy3.TabStop = false;
+            btnBuy3.Click += btnBuy3_Click;
             // 
             // btnBuy4
             // 
@@ -190,13 +193,17 @@
             btnBuy4.SizeMode = PictureBoxSizeMode.Zoom;
             btnBuy4.TabIndex = 11;
             btnBuy4.TabStop = false;
+            btnBuy4.Click += btnBuy4_Click;
             // 
             // lblSales
             // 
+            lblSales.AutoSize = true;
+            lblSales.BackColor = Color.Transparent;
             lblSales.Font = new Font("Cooper Black", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblSales.Location = new Point(620, 29);
+            lblSales.ForeColor = SystemColors.ActiveCaptionText;
+            lblSales.Location = new Point(617, 31);
             lblSales.Name = "lblSales";
-            lblSales.Size = new Size(80, 27);
+            lblSales.Size = new Size(0, 20);
             lblSales.TabIndex = 12;
             // 
             // SHOP
@@ -221,7 +228,7 @@
             Controls.Add(pictureBox3);
             Name = "SHOP";
             Text = "Form1";
-            Load += this.SHOP_Load;
+            Load += SHOP_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnCloseShop).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -252,6 +259,6 @@
         private PictureBox btnBuy2;
         private PictureBox btnBuy3;
         private PictureBox btnBuy4;
-        private TextBox lblSales;
+        private Label lblSales;
     }
 }

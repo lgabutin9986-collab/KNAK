@@ -14,12 +14,12 @@ namespace KNAK
 
         private void UpdateMoneyDisplay()
         {
+            // Gumagamit na ito ng Label kaya hindi na pwedeng i-typean
             lblSales.Text = "₱" + GameData.PlayerMoney.ToString();
         }
 
         private void CheckPurchasedItems()
         {
-            // Pansamantalang di muna gagamitin ang owned image kung di pa na-upload sa resources para walang error
             if (GameData.HasDoubleBurner)
             {
                 btnBuy1.Enabled = false;
@@ -116,20 +116,16 @@ namespace KNAK
 
         private void btnCloseShop_Click(object sender, EventArgs e)
         {
+            // 1. Buksan ulit ang Main Menu 
+            // (Siguraduhing palitan ang 'MAIN' ng eksaktong pangalan ng Main Menu form ninyo kung iba, halimbawa 'MainMenu')
+            MAIN mainMenu = new MAIN();
+            mainMenu.Show();
+
+            // 2. Isasara ang Shop form
             this.Close();
         }
 
         private void pictureBox7_Click(object sender, EventArgs e) { }
         private void SHOP_Load(object sender, EventArgs e) { }
-    }
-
-    // Pansamantalang data holder para sa shop mo
-    public static class GameData
-    {
-        public static int PlayerMoney { get; set; } = 1500;
-        public static bool HasDoubleBurner { get; set; } = false;
-        public static bool HasHeavyDeepFryer { get; set; } = false;
-        public static bool HasCommercialDispenser { get; set; } = false;
-        public static bool HasPremiumBeef { get; set; } = false;
     }
 }
