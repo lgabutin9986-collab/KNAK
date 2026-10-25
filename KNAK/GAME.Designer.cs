@@ -32,33 +32,34 @@ namespace KNAK
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GAME));
             ConstructionWorker = new PictureBox();
             Walktimer = new System.Windows.Forms.Timer(components);
             btnBack = new Button();
             btnRestart = new Button();
             lblStage = new Label();
-            pnlDialogue = new Panel();
             lblSpeaker = new Label();
-            lblDialogue = new Label();
             btnServe = new Button();
             btnTalk = new Button();
+            pnlDialogue = new Panel();
             lblStatus = new Label();
-            ((System.ComponentModel.ISupportInitialize)ConstructionWorker).BeginInit();
+            lblDialogue = new Label();
+            ((ISupportInitialize)ConstructionWorker).BeginInit();
             pnlDialogue.SuspendLayout();
             SuspendLayout();
             // 
             // ConstructionWorker
             // 
             ConstructionWorker.BackColor = Color.Transparent;
+            ConstructionWorker.Cursor = Cursors.Hand;
             ConstructionWorker.Image = Properties.Resources.worker_normal_face_removebg_preview;
-            ConstructionWorker.Location = new Point(720, 14);
+            ConstructionWorker.Location = new Point(736, 16);
             ConstructionWorker.Name = "ConstructionWorker";
             ConstructionWorker.Size = new Size(170, 255);
             ConstructionWorker.SizeMode = PictureBoxSizeMode.Zoom;
             ConstructionWorker.TabIndex = 0;
             ConstructionWorker.TabStop = false;
-            ConstructionWorker.Cursor = Cursors.Hand;
             ConstructionWorker.Click += ConstructionWorker_Click;
             // 
             // Walktimer
@@ -103,26 +104,12 @@ namespace KNAK
             lblStage.BackColor = Color.FromArgb(210, 20, 24, 33);
             lblStage.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblStage.ForeColor = Color.FromArgb(255, 215, 0);
-            lblStage.Location = new Point(412, 16);
+            lblStage.Location = new Point(404, 0);
             lblStage.Name = "lblStage";
             lblStage.Size = new Size(200, 32);
             lblStage.TabIndex = 3;
             lblStage.Text = "STAGE 1 • CANTEEN";
             lblStage.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // pnlDialogue
-            // 
-            pnlDialogue.BackColor = Color.FromArgb(240, 24, 28, 38);
-            pnlDialogue.Controls.Add(lblStatus);
-            pnlDialogue.Controls.Add(btnTalk);
-            pnlDialogue.Controls.Add(btnServe);
-            pnlDialogue.Controls.Add(lblDialogue);
-            pnlDialogue.Controls.Add(lblSpeaker);
-            pnlDialogue.Location = new Point(272, 290);
-            pnlDialogue.Name = "pnlDialogue";
-            pnlDialogue.Size = new Size(480, 140);
-            pnlDialogue.TabIndex = 4;
-            pnlDialogue.Visible = false;
             // 
             // lblSpeaker
             // 
@@ -131,19 +118,9 @@ namespace KNAK
             lblSpeaker.ForeColor = Color.FromArgb(255, 193, 7);
             lblSpeaker.Location = new Point(16, 12);
             lblSpeaker.Name = "lblSpeaker";
-            lblSpeaker.Size = new Size(185, 23);
+            lblSpeaker.Size = new Size(198, 23);
             lblSpeaker.TabIndex = 0;
             lblSpeaker.Text = "Mang Berting (Worker)";
-            // 
-            // lblDialogue
-            // 
-            lblDialogue.Font = new Font("Segoe UI", 10F);
-            lblDialogue.ForeColor = Color.White;
-            lblDialogue.Location = new Point(16, 38);
-            lblDialogue.Name = "lblDialogue";
-            lblDialogue.Size = new Size(448, 48);
-            lblDialogue.TabIndex = 1;
-            lblDialogue.Text = "Pabili po! Isang malamig na tubig at tinapay para sa meryenda.";
             // 
             // btnServe
             // 
@@ -177,6 +154,21 @@ namespace KNAK
             btnTalk.UseVisualStyleBackColor = false;
             btnTalk.Click += btnTalk_Click;
             // 
+            // pnlDialogue
+            // 
+            pnlDialogue.BackColor = Color.FromArgb(240, 24, 28, 38);
+            pnlDialogue.Controls.Add(lblStatus);
+            pnlDialogue.Controls.Add(btnTalk);
+            pnlDialogue.Controls.Add(btnServe);
+            pnlDialogue.Controls.Add(lblDialogue);
+            pnlDialogue.Controls.Add(lblSpeaker);
+            pnlDialogue.Location = new Point(272, 290);
+            pnlDialogue.Name = "pnlDialogue";
+            pnlDialogue.Size = new Size(480, 140);
+            pnlDialogue.TabIndex = 4;
+            pnlDialogue.Visible = false;
+            pnlDialogue.Paint += pnlDialogue_Paint;
+            // 
             // lblStatus
             // 
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
@@ -187,10 +179,22 @@ namespace KNAK
             lblStatus.TabIndex = 4;
             lblStatus.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // lblDialogue
+            // 
+            lblDialogue.Font = new Font("Segoe UI", 10F);
+            lblDialogue.ForeColor = Color.White;
+            lblDialogue.Location = new Point(16, 38);
+            lblDialogue.Name = "lblDialogue";
+            lblDialogue.Size = new Size(448, 48);
+            lblDialogue.TabIndex = 1;
+            lblDialogue.Text = "Pabili po! Isang malamig na tubig at tinapay para sa meryenda.";
+            // 
             // GAME
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1024, 576);
             Controls.Add(pnlDialogue);
             Controls.Add(lblStage);
@@ -203,7 +207,7 @@ namespace KNAK
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KNAK - Stage 1";
             Load += GAME_Load;
-            ((System.ComponentModel.ISupportInitialize)ConstructionWorker).EndInit();
+            ((ISupportInitialize)ConstructionWorker).EndInit();
             pnlDialogue.ResumeLayout(false);
             pnlDialogue.PerformLayout();
             ResumeLayout(false);
@@ -216,11 +220,11 @@ namespace KNAK
         private Button btnBack;
         private Button btnRestart;
         private Label lblStage;
-        private Panel pnlDialogue;
         private Label lblSpeaker;
-        private Label lblDialogue;
         private Button btnServe;
         private Button btnTalk;
+        private Panel pnlDialogue;
         private Label lblStatus;
+        private Label lblDialogue;
     }
 }
