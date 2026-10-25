@@ -80,7 +80,7 @@ namespace KNAK
 
         private void btnexit_Click_1(object sender, EventArgs e)
         {
-            7\
+           
         }
     }
 }
