@@ -83,6 +83,7 @@ namespace KNAK
             pictureBoxTutorial.Paint += PictureBoxTutorial_Paint;
 
             btnShop.Click += btnShop_Click;
+            btnEndless.Click += btnEndless_Click;
         }
 
         private void AttachHoverEffect(Control ctrl, int w, int h, int x, int y)
@@ -90,7 +91,6 @@ namespace KNAK
             ctrl.MouseEnter += (s, e) =>
             {
                 ctrl.Size = new Size(w + 6, h + 3);
-                ctrl.Location = new Point(x - 3, y - 1);
             };
             ctrl.MouseLeave += (s, e) =>
             {
@@ -250,20 +250,9 @@ namespace KNAK
 
         private void btnEndless_Click(object sender, EventArgs e)
         {
-            // I-check kung tapos na ba ang Level 1 hanggang 7 (ibig sabihin, ang CurrentDay ay 8 pataas, o kung naka-unlock na)
-            // Pwede mo ring i-check kung GameData.CurrentDay > 7
-            if (GameData.CurrentDay <= 7)
-            {
-                // Lalabas ang pop-up warning kung hindi pa tapos ang Level 1-7
-                MessageBox.Show("Tapusin muna ang Level 1 hanggang 7 bago buksan ang Endless Mode, Bes!", "Naka-lock pa!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                // Kung tapos na ang Day 1-7, bubuksan na ang Endless Mode form
-                // EndlessForm endlessForm = new EndlessForm();
-                // endlessForm.Show();
-                // this.Hide();
-            }
+            ENDLESS endlessForm = new ENDLESS();
+            endlessForm.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) { }

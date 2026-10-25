@@ -83,6 +83,36 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cookedkwek2 {
+            get {
+                object obj = ResourceManager.GetObject("cookedkwek2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooking {
+            get {
+                object obj = ResourceManager.GetObject("cooking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap emptygulaman {
+            get {
+                object obj = ResourceManager.GetObject("emptygulaman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap endless_button_locked_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("endless_button_locked-removebg-preview", resourceCulture);
@@ -96,6 +126,36 @@ namespace KNAK.Properties {
         internal static System.Drawing.Bitmap exit_button_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("exit_button-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fryer {
+            get {
+                object obj = ResourceManager.GetObject("fryer", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap fullgulaman {
+            get {
+                object obj = ResourceManager.GetObject("fullgulaman", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap gulaman_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("gulaman-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +183,49 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap noeggbowl {
+            get {
+                object obj = ResourceManager.GetObject("noeggbowl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap overcookedkwek2 {
+            get {
+                object obj = ResourceManager.GetObject("overcookedkwek2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plate_with_rice {
             get {
                 object obj = ResourceManager.GetObject("plate_with_rice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rawegg {
+            get {
+                object obj = ResourceManager.GetObject("rawegg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ready_to_serve_kwekkwek_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("ready_to_serve_kwekkwek-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +246,26 @@ namespace KNAK.Properties {
         internal static System.Drawing.Bitmap rice_cooker_full {
             get {
                 object obj = ResourceManager.GetObject("rice_cooker_full", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stiregg {
+            get {
+                object obj = ResourceManager.GetObject("stiregg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stiregg1 {
+            get {
+                object obj = ResourceManager.GetObject("stiregg1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
