@@ -73,9 +73,69 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap burned_egg {
+            get {
+                object obj = ResourceManager.GetObject("burned_egg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap burned_tapa {
+            get {
+                object obj = ResourceManager.GetObject("burned_tapa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cart_button_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("cart_button-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooked_egg {
+            get {
+                object obj = ResourceManager.GetObject("cooked_egg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooked_tapa {
+            get {
+                object obj = ResourceManager.GetObject("cooked_tapa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooking_egg {
+            get {
+                object obj = ResourceManager.GetObject("cooking_egg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cooking_tapa {
+            get {
+                object obj = ResourceManager.GetObject("cooking_tapa", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -126,6 +186,26 @@ namespace KNAK.Properties {
         internal static System.Drawing.Bitmap plate_with_rice {
             get {
                 object obj = ResourceManager.GetObject("plate_with_rice", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plate_with_rice_and_egg {
+            get {
+                object obj = ResourceManager.GetObject("plate_with_rice_and_egg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plate_with_tapsilog {
+            get {
+                object obj = ResourceManager.GetObject("plate_with_tapsilog", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

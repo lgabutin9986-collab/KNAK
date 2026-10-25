@@ -42,28 +42,38 @@
             lblRiceStatus = new Label();
             timerRice = new System.Windows.Forms.Timer(components);
             pbRiceProgress = new ProgressBar();
-            pbTray = new PictureBox();
+            pbTray1 = new PictureBox();
             pbTray2 = new PictureBox();
             pbTray3 = new PictureBox();
-            pbTray4 = new PictureBox();
-            pbPlate1 = new PictureBox();
             pbPlate2 = new PictureBox();
             pbPlate3 = new PictureBox();
             pbPlate4 = new PictureBox();
-            pictureBox4 = new PictureBox();
+            pbStove = new PictureBox();
+            pbRawEgg = new PictureBox();
+            pbEggOnPan = new PictureBox();
+            timerEgg = new System.Windows.Forms.Timer(components);
+            pbEggProgress = new ProgressBar();
+            lblEggStatus = new Label();
+            pbRawTapa = new PictureBox();
+            pbTapaOnPan = new PictureBox();
+            timerTapa = new System.Windows.Forms.Timer(components);
+            pbTapaProgress = new ProgressBar();
+            lblTapaStatus = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbRiceCooker).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbTray).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbTray1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbTray2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbTray3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbTray4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pbPlate1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbStove).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbRawEgg).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbEggOnPan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbRawTapa).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbTapaOnPan).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -166,11 +176,11 @@
             lblRiceStatus.BackColor = Color.Transparent;
             lblRiceStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRiceStatus.ForeColor = SystemColors.HighlightText;
-            lblRiceStatus.Location = new Point(40, 399);
+            lblRiceStatus.Location = new Point(15, 399);
             lblRiceStatus.Name = "lblRiceStatus";
-            lblRiceStatus.Size = new Size(65, 17);
+            lblRiceStatus.Size = new Size(85, 17);
             lblRiceStatus.TabIndex = 8;
-            lblRiceStatus.Text = "Magluto";
+            lblRiceStatus.Text = "Tap to get!";
             // 
             // timerRice
             // 
@@ -181,19 +191,19 @@
             // 
             pbRiceProgress.Location = new Point(12, 418);
             pbRiceProgress.Name = "pbRiceProgress";
-            pbRiceProgress.Size = new Size(115, 20);
+            pbRiceProgress.Size = new Size(98, 20);
             pbRiceProgress.TabIndex = 9;
             // 
-            // pbTray
+            // pbTray1
             // 
-            pbTray.BackColor = Color.Transparent;
-            pbTray.Image = (Image)resources.GetObject("pbTray.Image");
-            pbTray.Location = new Point(35, 209);
-            pbTray.Name = "pbTray";
-            pbTray.Size = new Size(176, 80);
-            pbTray.SizeMode = PictureBoxSizeMode.Zoom;
-            pbTray.TabIndex = 10;
-            pbTray.TabStop = false;
+            pbTray1.BackColor = Color.Transparent;
+            pbTray1.Image = (Image)resources.GetObject("pbTray1.Image");
+            pbTray1.Location = new Point(35, 209);
+            pbTray1.Name = "pbTray1";
+            pbTray1.Size = new Size(176, 80);
+            pbTray1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbTray1.TabIndex = 10;
+            pbTray1.TabStop = false;
             // 
             // pbTray2
             // 
@@ -217,34 +227,11 @@
             pbTray3.TabIndex = 12;
             pbTray3.TabStop = false;
             // 
-            // pbTray4
-            // 
-            pbTray4.BackColor = Color.Transparent;
-            pbTray4.Image = (Image)resources.GetObject("pbTray4.Image");
-            pbTray4.Location = new Point(594, 209);
-            pbTray4.Name = "pbTray4";
-            pbTray4.Size = new Size(176, 80);
-            pbTray4.SizeMode = PictureBoxSizeMode.Zoom;
-            pbTray4.TabIndex = 13;
-            pbTray4.TabStop = false;
-            // 
-            // pbPlate1
-            // 
-            pbPlate1.BackColor = Color.Silver;
-            pbPlate1.Image = (Image)resources.GetObject("pbPlate1.Image");
-            pbPlate1.Location = new Point(59, 221);
-            pbPlate1.Name = "pbPlate1";
-            pbPlate1.Size = new Size(55, 54);
-            pbPlate1.SizeMode = PictureBoxSizeMode.Zoom;
-            pbPlate1.TabIndex = 14;
-            pbPlate1.TabStop = false;
-            pbPlate1.Visible = false;
-            // 
             // pbPlate2
             // 
             pbPlate2.BackColor = Color.Silver;
             pbPlate2.Image = (Image)resources.GetObject("pbPlate2.Image");
-            pbPlate2.Location = new Point(247, 221);
+            pbPlate2.Location = new Point(55, 221);
             pbPlate2.Name = "pbPlate2";
             pbPlate2.Size = new Size(55, 54);
             pbPlate2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -256,7 +243,7 @@
             // 
             pbPlate3.BackColor = Color.Silver;
             pbPlate3.Image = (Image)resources.GetObject("pbPlate3.Image");
-            pbPlate3.Location = new Point(441, 221);
+            pbPlate3.Location = new Point(243, 221);
             pbPlate3.Name = "pbPlate3";
             pbPlate3.Size = new Size(55, 54);
             pbPlate3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -268,7 +255,7 @@
             // 
             pbPlate4.BackColor = Color.Silver;
             pbPlate4.Image = (Image)resources.GetObject("pbPlate4.Image");
-            pbPlate4.Location = new Point(627, 221);
+            pbPlate4.Location = new Point(445, 221);
             pbPlate4.Name = "pbPlate4";
             pbPlate4.Size = new Size(55, 54);
             pbPlate4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -276,16 +263,118 @@
             pbPlate4.TabStop = false;
             pbPlate4.Visible = false;
             // 
-            // pictureBox4
+            // pbStove
             // 
-            pictureBox4.BackColor = Color.Transparent;
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(133, 285);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(241, 134);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 18;
-            pictureBox4.TabStop = false;
+            pbStove.BackColor = Color.Transparent;
+            pbStove.Image = (Image)resources.GetObject("pbStove.Image");
+            pbStove.Location = new Point(133, 285);
+            pbStove.Name = "pbStove";
+            pbStove.Size = new Size(241, 134);
+            pbStove.SizeMode = PictureBoxSizeMode.Zoom;
+            pbStove.TabIndex = 18;
+            pbStove.TabStop = false;
+            // 
+            // pbRawEgg
+            // 
+            pbRawEgg.BackColor = Color.Transparent;
+            pbRawEgg.Image = (Image)resources.GetObject("pbRawEgg.Image");
+            pbRawEgg.Location = new Point(373, 322);
+            pbRawEgg.Name = "pbRawEgg";
+            pbRawEgg.Size = new Size(46, 44);
+            pbRawEgg.SizeMode = PictureBoxSizeMode.Zoom;
+            pbRawEgg.TabIndex = 19;
+            pbRawEgg.TabStop = false;
+            pbRawEgg.Click += pbRawEgg_Click;
+            // 
+            // pbEggOnPan
+            // 
+            pbEggOnPan.BackColor = Color.FromArgb(240, 191, 62);
+            pbEggOnPan.Image = (Image)resources.GetObject("pbEggOnPan.Image");
+            pbEggOnPan.Location = new Point(176, 309);
+            pbEggOnPan.Name = "pbEggOnPan";
+            pbEggOnPan.Size = new Size(44, 40);
+            pbEggOnPan.SizeMode = PictureBoxSizeMode.Zoom;
+            pbEggOnPan.TabIndex = 20;
+            pbEggOnPan.TabStop = false;
+            pbEggOnPan.Visible = false;
+            pbEggOnPan.Click += pbEggOnPan_Click;
+            // 
+            // timerEgg
+            // 
+            timerEgg.Interval = 1000;
+            timerEgg.Tick += timerEgg_Tick;
+            // 
+            // pbEggProgress
+            // 
+            pbEggProgress.Location = new Point(151, 418);
+            pbEggProgress.Name = "pbEggProgress";
+            pbEggProgress.Size = new Size(96, 20);
+            pbEggProgress.TabIndex = 21;
+            pbEggProgress.Visible = false;
+            // 
+            // lblEggStatus
+            // 
+            lblEggStatus.AutoSize = true;
+            lblEggStatus.BackColor = Color.Transparent;
+            lblEggStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEggStatus.ForeColor = SystemColors.HighlightText;
+            lblEggStatus.Location = new Point(153, 398);
+            lblEggStatus.Name = "lblEggStatus";
+            lblEggStatus.Size = new Size(85, 17);
+            lblEggStatus.TabIndex = 22;
+            lblEggStatus.Text = "Tap to get!";
+            lblEggStatus.Visible = false;
+            // 
+            // pbRawTapa
+            // 
+            pbRawTapa.BackColor = Color.Transparent;
+            pbRawTapa.Image = (Image)resources.GetObject("pbRawTapa.Image");
+            pbRawTapa.Location = new Point(367, 372);
+            pbRawTapa.Name = "pbRawTapa";
+            pbRawTapa.Size = new Size(59, 43);
+            pbRawTapa.SizeMode = PictureBoxSizeMode.Zoom;
+            pbRawTapa.TabIndex = 23;
+            pbRawTapa.TabStop = false;
+            pbRawTapa.Click += pbRawTapa_Click;
+            // 
+            // pbTapaOnPan
+            // 
+            pbTapaOnPan.BackColor = Color.FromArgb(240, 191, 62);
+            pbTapaOnPan.Image = (Image)resources.GetObject("pbTapaOnPan.Image");
+            pbTapaOnPan.Location = new Point(278, 309);
+            pbTapaOnPan.Name = "pbTapaOnPan";
+            pbTapaOnPan.Size = new Size(58, 40);
+            pbTapaOnPan.SizeMode = PictureBoxSizeMode.Zoom;
+            pbTapaOnPan.TabIndex = 24;
+            pbTapaOnPan.TabStop = false;
+            pbTapaOnPan.Visible = false;
+            pbTapaOnPan.Click += pbTapaOnPan_Click;
+            // 
+            // timerTapa
+            // 
+            timerTapa.Interval = 1000;
+            timerTapa.Tick += timerTapa_Tick;
+            // 
+            // pbTapaProgress
+            // 
+            pbTapaProgress.Location = new Point(253, 418);
+            pbTapaProgress.Name = "pbTapaProgress";
+            pbTapaProgress.Size = new Size(96, 20);
+            pbTapaProgress.TabIndex = 25;
+            pbTapaProgress.Visible = false;
+            // 
+            // lblTapaStatus
+            // 
+            lblTapaStatus.AutoSize = true;
+            lblTapaStatus.BackColor = Color.Transparent;
+            lblTapaStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTapaStatus.ForeColor = SystemColors.HighlightText;
+            lblTapaStatus.Location = new Point(258, 398);
+            lblTapaStatus.Name = "lblTapaStatus";
+            lblTapaStatus.Size = new Size(85, 17);
+            lblTapaStatus.TabIndex = 26;
+            lblTapaStatus.Text = "Tap to get!";
+            lblTapaStatus.Visible = false;
             // 
             // ENDLESS
             // 
@@ -294,17 +383,23 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
-            Controls.Add(pictureBox4);
+            Controls.Add(lblTapaStatus);
+            Controls.Add(pbTapaProgress);
+            Controls.Add(pbTapaOnPan);
+            Controls.Add(pbRawTapa);
+            Controls.Add(lblEggStatus);
+            Controls.Add(pbEggProgress);
+            Controls.Add(pbEggOnPan);
+            Controls.Add(pbRawEgg);
+            Controls.Add(lblRiceStatus);
+            Controls.Add(pbStove);
             Controls.Add(pbPlate4);
             Controls.Add(pbPlate3);
             Controls.Add(pbPlate2);
-            Controls.Add(pbPlate1);
-            Controls.Add(pbTray4);
             Controls.Add(pbTray3);
             Controls.Add(pbTray2);
-            Controls.Add(pbTray);
+            Controls.Add(pbTray1);
             Controls.Add(pbRiceProgress);
-            Controls.Add(lblRiceStatus);
             Controls.Add(pbRiceCooker);
             Controls.Add(lblCurrentScore);
             Controls.Add(lblHighscore);
@@ -320,15 +415,17 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbRiceCooker).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbTray).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbTray1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbTray2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbTray3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbTray4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pbPlate1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbPlate4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbStove).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbRawEgg).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbEggOnPan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbRawTapa).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbTapaOnPan).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -347,14 +444,22 @@
         private Label lblRiceStatus;
         private System.Windows.Forms.Timer timerRice;
         private ProgressBar pbRiceProgress;
-        private PictureBox pbTray;
+        private PictureBox pbTray1;
         private PictureBox pbTray2;
         private PictureBox pbTray3;
-        private PictureBox pbTray4;
-        private PictureBox pbPlate1;
         private PictureBox pbPlate2;
         private PictureBox pbPlate3;
         private PictureBox pbPlate4;
-        private PictureBox pictureBox4;
+        private PictureBox pbStove;
+        private PictureBox pbRawEgg;
+        private PictureBox pbEggOnPan;
+        private System.Windows.Forms.Timer timerEgg;
+        private ProgressBar pbEggProgress;
+        private Label lblEggStatus;
+        private PictureBox pbRawTapa;
+        private PictureBox pbTapaOnPan;
+        private System.Windows.Forms.Timer timerTapa;
+        private ProgressBar pbTapaProgress;
+        private Label lblTapaStatus;
     }
 }
