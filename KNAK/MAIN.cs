@@ -81,6 +81,8 @@ namespace KNAK
 
             // I-enable ang Paint event para sa custom smooth proportional image rendering
             pictureBoxTutorial.Paint += PictureBoxTutorial_Paint;
+
+            btnShop.Click += btnShop_Click;
         }
 
         private void AttachHoverEffect(Control ctrl, int w, int h, int x, int y)
@@ -237,6 +239,13 @@ namespace KNAK
         {
             base.OnFormClosed(e);
             Application.Exit();
+        }
+
+        private void btnShop_Click(object sender, EventArgs e)
+        {
+            SHOP shopForm = new SHOP();
+            shopForm.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) { }
