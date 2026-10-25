@@ -163,19 +163,13 @@
   <data name="back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\back.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tutorial2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tutorial2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rice_cooker_full" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rice cooker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tutorial3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tutorial3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rice_cooker_empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\empty rice cooker.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tutorial4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tutorial4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tutorial5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tutorial5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tutorial1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tutorial1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="plate_with_rice" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rice on plate only.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
