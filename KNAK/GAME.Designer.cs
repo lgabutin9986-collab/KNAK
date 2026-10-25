@@ -33,39 +33,47 @@ namespace KNAK
         private void InitializeComponent()
         {
             components = new Container();
-            ComponentResourceManager resources = new ComponentResourceManager(typeof(GAME));
-            ConstructionWorker = new PictureBox();
+            picCustomer = new PictureBox();
             Walktimer = new System.Windows.Forms.Timer(components);
             btnBack = new Button();
             btnRestart = new Button();
             lblStage = new Label();
-            lblSpeaker = new Label();
-            btnServe = new Button();
-            btnTalk = new Button();
-            pnlDialogue = new Panel();
-            lblStatus = new Label();
-            lblDialogue = new Label();
-            ((ISupportInitialize)ConstructionWorker).BeginInit();
-            pnlDialogue.SuspendLayout();
+            pnlBubbleChat = new Panel();
+            lblQuantity = new Label();
+            picFood = new PictureBox();
+            pboxFryer = new PictureBox();
+            pboxPares = new PictureBox();
+            pboxEggsBasket = new PictureBox();
+            pboxBatterBowl = new PictureBox();
+            pboxMeatBowl = new PictureBox();
+            pboxTray = new PictureBox();
+            ((ISupportInitialize)picCustomer).BeginInit();
+            pnlBubbleChat.SuspendLayout();
+            ((ISupportInitialize)picFood).BeginInit();
+            ((ISupportInitialize)pboxFryer).BeginInit();
+            ((ISupportInitialize)pboxPares).BeginInit();
+            ((ISupportInitialize)pboxEggsBasket).BeginInit();
+            ((ISupportInitialize)pboxBatterBowl).BeginInit();
+            ((ISupportInitialize)pboxMeatBowl).BeginInit();
+            ((ISupportInitialize)pboxTray).BeginInit();
             SuspendLayout();
             // 
-            // ConstructionWorker
+            // picCustomer
             // 
-            ConstructionWorker.BackColor = Color.Transparent;
-            ConstructionWorker.Cursor = Cursors.Hand;
-            ConstructionWorker.Image = Properties.Resources.worker_normal_face_removebg_preview;
-            ConstructionWorker.Location = new Point(736, 16);
-            ConstructionWorker.Name = "ConstructionWorker";
-            ConstructionWorker.Size = new Size(170, 255);
-            ConstructionWorker.SizeMode = PictureBoxSizeMode.Zoom;
-            ConstructionWorker.TabIndex = 0;
-            ConstructionWorker.TabStop = false;
-            ConstructionWorker.Click += ConstructionWorker_Click;
+            picCustomer.BackColor = Color.Transparent;
+            picCustomer.Cursor = Cursors.Hand;
+            picCustomer.Image = Properties.Resources.worker_normal_face_removebg_preview;
+            picCustomer.Location = new Point(736, 16);
+            picCustomer.Name = "picCustomer";
+            picCustomer.Size = new Size(170, 255);
+            picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
+            picCustomer.TabIndex = 0;
+            picCustomer.TabStop = false;
+            picCustomer.Click += ConstructionWorker_Click;
             // 
             // Walktimer
             // 
             Walktimer.Interval = 16;
-            Walktimer.Tick += Walktimer_Tick;
             // 
             // btnBack
             // 
@@ -108,123 +116,170 @@ namespace KNAK
             lblStage.Name = "lblStage";
             lblStage.Size = new Size(200, 32);
             lblStage.TabIndex = 3;
-            lblStage.Text = "STAGE 1 • CANTEEN";
+            lblStage.Text = "STAGE 1";
             lblStage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // lblSpeaker
+            // pnlBubbleChat
             // 
-            lblSpeaker.AutoSize = true;
-            lblSpeaker.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            lblSpeaker.ForeColor = Color.FromArgb(255, 193, 7);
-            lblSpeaker.Location = new Point(16, 12);
-            lblSpeaker.Name = "lblSpeaker";
-            lblSpeaker.Size = new Size(198, 23);
-            lblSpeaker.TabIndex = 0;
-            lblSpeaker.Text = "Mang Berting (Worker)";
+            pnlBubbleChat.BackColor = Color.Transparent;
+            pnlBubbleChat.BackgroundImage = Properties.Resources.speech_bubble_;
+            pnlBubbleChat.BackgroundImageLayout = ImageLayout.Stretch;
+            pnlBubbleChat.Controls.Add(lblQuantity);
+            pnlBubbleChat.Controls.Add(picFood);
+            pnlBubbleChat.Location = new Point(455, 16);
+            pnlBubbleChat.Name = "pnlBubbleChat";
+            pnlBubbleChat.Size = new Size(321, 145);
+            pnlBubbleChat.TabIndex = 4;
+            pnlBubbleChat.Visible = false;
+            pnlBubbleChat.Paint += pnlDialogue_Paint;
             // 
-            // btnServe
+            // lblQuantity
             // 
-            btnServe.BackColor = Color.FromArgb(40, 167, 69);
-            btnServe.Cursor = Cursors.Hand;
-            btnServe.FlatAppearance.BorderSize = 0;
-            btnServe.FlatStyle = FlatStyle.Flat;
-            btnServe.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnServe.ForeColor = Color.White;
-            btnServe.Location = new Point(16, 92);
-            btnServe.Name = "btnServe";
-            btnServe.Size = new Size(140, 36);
-            btnServe.TabIndex = 2;
-            btnServe.Text = "🍱 Serve Merienda";
-            btnServe.UseVisualStyleBackColor = false;
-            btnServe.Click += btnServe_Click;
+            lblQuantity.BackColor = Color.Transparent;
+            lblQuantity.Font = new Font("Segoe UI", 11.5F, FontStyle.Bold);
+            lblQuantity.ForeColor = Color.FromArgb(180, 83, 9);
+            lblQuantity.Location = new Point(162, 48);
+            lblQuantity.Name = "lblQuantity";
+            lblQuantity.Size = new Size(48, 30);
+            lblQuantity.TabIndex = 5;
+            lblQuantity.Text = "× 1";
+            lblQuantity.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnTalk
+            // picFood
             // 
-            btnTalk.BackColor = Color.FromArgb(23, 162, 184);
-            btnTalk.Cursor = Cursors.Hand;
-            btnTalk.FlatAppearance.BorderSize = 0;
-            btnTalk.FlatStyle = FlatStyle.Flat;
-            btnTalk.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnTalk.ForeColor = Color.White;
-            btnTalk.Location = new Point(168, 92);
-            btnTalk.Name = "btnTalk";
-            btnTalk.Size = new Size(100, 36);
-            btnTalk.TabIndex = 3;
-            btnTalk.Text = "💬 Talk";
-            btnTalk.UseVisualStyleBackColor = false;
-            btnTalk.Click += btnTalk_Click;
+            picFood.BackColor = Color.Transparent;
+            picFood.BackgroundImage = Properties.Resources.ready_to_serve_kwekkwek;
+            picFood.BackgroundImageLayout = ImageLayout.Zoom;
+            picFood.Cursor = Cursors.Hand;
+            picFood.Location = new Point(106, 38);
+            picFood.Name = "picFood";
+            picFood.Size = new Size(54, 52);
+            picFood.SizeMode = PictureBoxSizeMode.Zoom;
+            picFood.TabIndex = 0;
+            picFood.TabStop = false;
             // 
-            // pnlDialogue
+            // pboxFryer
             // 
-            pnlDialogue.BackColor = Color.FromArgb(240, 24, 28, 38);
-            pnlDialogue.Controls.Add(lblStatus);
-            pnlDialogue.Controls.Add(btnTalk);
-            pnlDialogue.Controls.Add(btnServe);
-            pnlDialogue.Controls.Add(lblDialogue);
-            pnlDialogue.Controls.Add(lblSpeaker);
-            pnlDialogue.Location = new Point(272, 290);
-            pnlDialogue.Name = "pnlDialogue";
-            pnlDialogue.Size = new Size(480, 140);
-            pnlDialogue.TabIndex = 4;
-            pnlDialogue.Visible = false;
-            pnlDialogue.Paint += pnlDialogue_Paint;
+            pboxFryer.BackColor = Color.Transparent;
+            pboxFryer.Cursor = Cursors.Hand;
+            pboxFryer.Image = Properties.Resources.deep_fryer_trimmed;
+            pboxFryer.Location = new Point(32, 218);
+            pboxFryer.Name = "pboxFryer";
+            pboxFryer.Size = new Size(130, 145);
+            pboxFryer.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxFryer.TabIndex = 6;
+            pboxFryer.TabStop = false;
             // 
-            // lblStatus
+            // pboxPares
             // 
-            lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
-            lblStatus.ForeColor = Color.FromArgb(255, 215, 0);
-            lblStatus.Location = new Point(278, 98);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(190, 25);
-            lblStatus.TabIndex = 4;
-            lblStatus.TextAlign = ContentAlignment.MiddleRight;
+            pboxPares.BackColor = Color.Transparent;
+            pboxPares.Cursor = Cursors.Hand;
+            pboxPares.Image = Properties.Resources.pares_pot_trimmed;
+            pboxPares.Location = new Point(634, 250);
+            pboxPares.Name = "pboxPares";
+            pboxPares.Size = new Size(142, 113);
+            pboxPares.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxPares.TabIndex = 7;
+            pboxPares.TabStop = false;
             // 
-            // lblDialogue
+            // pboxEggsBasket
             // 
-            lblDialogue.Font = new Font("Segoe UI", 10F);
-            lblDialogue.ForeColor = Color.White;
-            lblDialogue.Location = new Point(16, 38);
-            lblDialogue.Name = "lblDialogue";
-            lblDialogue.Size = new Size(448, 48);
-            lblDialogue.TabIndex = 1;
-            lblDialogue.Text = "Pabili po! Isang malamig na tubig at tinapay para sa meryenda.";
+            pboxEggsBasket.BackColor = Color.Transparent;
+            pboxEggsBasket.Cursor = Cursors.Hand;
+            pboxEggsBasket.Image = Properties.Resources.raw_eggs_basket;
+            pboxEggsBasket.Location = new Point(176, 266);
+            pboxEggsBasket.Name = "pboxEggsBasket";
+            pboxEggsBasket.Size = new Size(84, 88);
+            pboxEggsBasket.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxEggsBasket.TabIndex = 8;
+            pboxEggsBasket.TabStop = false;
+            // 
+            // pboxBatterBowl
+            // 
+            pboxBatterBowl.BackColor = Color.Transparent;
+            pboxBatterBowl.Cursor = Cursors.Hand;
+            pboxBatterBowl.Image = Properties.Resources.kwekkwek_batter_bowl;
+            pboxBatterBowl.Location = new Point(272, 274);
+            pboxBatterBowl.Name = "pboxBatterBowl";
+            pboxBatterBowl.Size = new Size(92, 80);
+            pboxBatterBowl.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxBatterBowl.TabIndex = 9;
+            pboxBatterBowl.TabStop = false;
+            // 
+            // pboxMeatBowl
+            // 
+            pboxMeatBowl.BackColor = Color.Transparent;
+            pboxMeatBowl.Cursor = Cursors.Hand;
+            pboxMeatBowl.Image = Properties.Resources.beef_pares_meat;
+            pboxMeatBowl.Location = new Point(376, 276);
+            pboxMeatBowl.Name = "pboxMeatBowl";
+            pboxMeatBowl.Size = new Size(92, 78);
+            pboxMeatBowl.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxMeatBowl.TabIndex = 10;
+            pboxMeatBowl.TabStop = false;
+            // 
+            // pboxTray
+            // 
+            pboxTray.BackColor = Color.Transparent;
+            pboxTray.Cursor = Cursors.Hand;
+            pboxTray.Image = Properties.Resources.tray_trimmed;
+            pboxTray.Location = new Point(485, 310);
+            pboxTray.Name = "pboxTray";
+            pboxTray.Size = new Size(130, 42);
+            pboxTray.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxTray.TabIndex = 11;
+            pboxTray.TabStop = false;
             // 
             // GAME
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1024, 576);
-            Controls.Add(pnlDialogue);
             Controls.Add(lblStage);
             Controls.Add(btnRestart);
             Controls.Add(btnBack);
-            Controls.Add(ConstructionWorker);
+            Controls.Add(picCustomer);
+            Controls.Add(pnlBubbleChat);
+            Controls.Add(pboxFryer);
+            Controls.Add(pboxEggsBasket);
+            Controls.Add(pboxBatterBowl);
+            Controls.Add(pboxMeatBowl);
+            Controls.Add(pboxTray);
+            Controls.Add(pboxPares);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "GAME";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "KNAK - Stage 1";
             Load += GAME_Load;
-            ((ISupportInitialize)ConstructionWorker).EndInit();
-            pnlDialogue.ResumeLayout(false);
-            pnlDialogue.PerformLayout();
+            ((ISupportInitialize)picCustomer).EndInit();
+            pnlBubbleChat.ResumeLayout(false);
+            ((ISupportInitialize)picFood).EndInit();
+            ((ISupportInitialize)pboxFryer).EndInit();
+            ((ISupportInitialize)pboxPares).EndInit();
+            ((ISupportInitialize)pboxEggsBasket).EndInit();
+            ((ISupportInitialize)pboxBatterBowl).EndInit();
+            ((ISupportInitialize)pboxMeatBowl).EndInit();
+            ((ISupportInitialize)pboxTray).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private PictureBox ConstructionWorker;
+        private PictureBox picCustomer;
         private System.Windows.Forms.Timer Walktimer;
         private Button btnBack;
         private Button btnRestart;
         private Label lblStage;
-        private Label lblSpeaker;
-        private Button btnServe;
-        private Button btnTalk;
-        private Panel pnlDialogue;
-        private Label lblStatus;
-        private Label lblDialogue;
+        private Panel pnlBubbleChat;
+        private PictureBox picFood;
+        private Label lblQuantity;
+        private PictureBox pboxFryer;
+        private PictureBox pboxPares;
+        private PictureBox pboxEggsBasket;
+        private PictureBox pboxBatterBowl;
+        private PictureBox pboxMeatBowl;
+        private PictureBox pboxTray;
     }
 }
