@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="beef_pares_meat" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\beef_pares_meat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="endless button locked (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\endless button locked (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -127,14 +130,17 @@
   <data name="endless mode bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\endless mode bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="deep fryer for kwekkwek" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\deep fryer for kwekkwek.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="deep_fryer_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deep_fryer_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="worker_normal_face-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\worker_normal_face-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Stage1bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stage1bg1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="speech bubble " type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\speech bubble .png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\..\..\..\..\Downloads\speech bubble .png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="story mode buttom" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\story mode buttom.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,14 +148,29 @@
   <data name="pares pot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pares pot.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="story mode bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\story mode bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tray_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tray_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="kwekkwek_batter_bowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kwekkwek_batter_bowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="raw_eggs_basket" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\raw_eggs_basket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="pares_pot_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\pares_pot_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="exit button(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\exit button(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="deep fryer for kwekkwek" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deep fryer for kwekkwek.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="kainan_logo__1_-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\kainan_logo__1_-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="story mode bg" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\story mode bg.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tuts button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tuts button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -157,22 +178,7 @@
   <data name="story mode buttom (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\story mode buttom (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="raw_eggs_basket" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\raw_eggs_basket.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="kwekkwek_batter_bowl" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\kwekkwek_batter_bowl.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="beef_pares_meat" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\beef_pares_meat.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="deep_fryer_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\deep_fryer_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pares_pot_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pares_pot_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="tray_trimmed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tray_trimmed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tapsilog" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tapsilog1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

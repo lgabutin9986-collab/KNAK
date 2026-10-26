@@ -1,45 +1,50 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net10.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWindowsForms>true</UseWindowsForms>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Update="MAIN.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="MAIN.Designer.cs">
-      <DependentUpon>MAIN.cs</DependentUpon>
-    </Compile>
-    <Compile Update="GAME.cs" />
-    <Compile Update="GAME.Designer.cs">
-      <DependentUpon>GAME.cs</DependentUpon>
-    </Compile>
-    <Compile Update="ENDLESS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="ENDLESS.Designer.cs">
-      <DependentUpon>ENDLESS.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="MAIN.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="MAIN.Designer.cs">
+			<DependentUpon>MAIN.cs</DependentUpon>
+		</Compile>
+		<Compile Update="GAME.cs" />
+		<Compile Update="GAME.Designer.cs">
+			<DependentUpon>GAME.cs</DependentUpon>
+		</Compile>
+		<Compile Update="ENDLESS.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="ENDLESS.Designer.cs">
+			<DependentUpon>ENDLESS.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Resources.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\Stage1bg.png" LogicalName="stage1_bg.png" />
+		<EmbeddedResource Include="Resources\tapsilog1.png" LogicalName="tapsilog1.png" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
 
 </Project>

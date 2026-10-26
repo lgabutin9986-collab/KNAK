@@ -70,7 +70,6 @@ namespace KNAK
             btnEndless.Size = new Size(192, 46);
             btnEndless.TabIndex = 7;
             btnEndless.UseVisualStyleBackColor = false;
-            btnEndless.Click += btnEndless_Click;
             // 
             // pictureBox1
             // 

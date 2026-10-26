@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
 namespace KNAK
 {
     // =========================================================
-    // 1. DAPAT UNANG CLASS ANG FORM CLASS PARA SA DESIGNER
+    // 1. FORM CLASS (MAIN GAME FORM)
     // =========================================================
     public partial class GAME : Form
     {
@@ -21,11 +22,11 @@ namespace KNAK
         private Image? originalWorkerImage;
         private Size originalWorkerSize;
 
-        private const int baseY = 14;   // Standard Y position
+        private const int baseY = 14;   // Standard Y position for customers
 
         // --- 3 CUSTOMER SLOTS & RANDOM SPAWNING ---
         private CustomerSlot[] slots = new CustomerSlot[3];
-        private readonly int[] slotTargetPositions = new int[] { 140, 425, 680 }; // Left, Center, Right slots
+        private readonly int[] slotTargetPositions = new int[] { 110, 385, 660 }; // Left, Center, Right slots
         private float speed = 3.2f; // Walk speed
 
         private readonly System.Windows.Forms.Timer spawnTimer = new System.Windows.Forms.Timer();
@@ -39,6 +40,19 @@ namespace KNAK
         private const int MaxWalkouts = 3;     // 3 walkouts = Game Over
         private int customersServed = 0;
         private bool isMatchOver = false;
+
+        // --- PAUSE MECHANICS STATE & DESIGNER CONTROLS ---
+        private bool isPaused = false;
+        private Control? ctrlPauseBox;
+        private Control? ctrlBtnResume;
+        private Control? ctrlRestart;
+        private Control? ctrlMainMenu;
+
+        // --- SHIFT CLEARED DESIGNER CONTROLS ---
+        private Control? ctrlShiftBox;
+        private Control? ctrlNextDay;
+        private Control? ctrlShowQuota;
+        private readonly Label lblQuotaTextDisplay = new Label();
 
         // Shift Timer
         private const int ShiftTotalSeconds = 120;
@@ -54,13 +68,12 @@ namespace KNAK
         private readonly Label lblTimerHud = new Label();
         private readonly Label lblRevenueHud = new Label();
         private readonly Label lblWalkoutsHud = new Label();
-        private readonly Panel pnlPatienceBar = new Panel();
 
         private readonly Label lblFloatingToast = new Label();
         private readonly System.Windows.Forms.Timer toastTimer = new System.Windows.Forms.Timer();
         private int toastTicks = 0;
 
-        // Game Over / Win Result Modal
+        // Game Over Result Modal (for Failure)
         private readonly Panel pnlResultModal = new Panel();
         private readonly Label lblModalTitle = new Label();
         private readonly Label lblModalSubtitle = new Label();
@@ -87,7 +100,6 @@ namespace KNAK
             patienceTimer.Interval = 100;
             patienceTimer.Tick += PatienceTimer_Tick;
 
-            // SPAWN TIMER: 5000 ms (5 segundo bago pumasok ang bagong customer)
             spawnTimer.Interval = 5000;
             spawnTimer.Tick += SpawnTimer_Tick;
 
@@ -96,17 +108,6 @@ namespace KNAK
 
             Walktimer.Interval = 16; // ~60 FPS
             Walktimer.Tick += Walktimer_Tick;
-
-            try
-            {
-                typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
-                    ?.SetValue(picCustomer, true, null);
-                typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
-                    ?.SetValue(pnlBubbleChat, true, null);
-                typeof(Control).GetProperty("DoubleBuffered", BindingFlags.NonPublic | BindingFlags.Instance)
-                    ?.SetValue(pnlPatienceBar, true, null);
-            }
-            catch { }
         }
 
         public GAME(MAIN main) : this()
@@ -126,8 +127,12 @@ namespace KNAK
 
         private void GAME_Load(object sender, EventArgs e)
         {
+            if (picFood != null) picFood.Visible = false;
+            if (picBubbleChat != null) picBubbleChat.Visible = false;
+
+            // ITAGO ANG DALAWA DAHIL SA PAUSE MENU NA ANG CONTROL
+
             originalWorkerSize = picCustomer.Size;
-            picCustomer.SizeMode = PictureBoxSizeMode.StretchImage;
             originalWorkerImage = picCustomer.Image;
 
             InitializeCustomerPool();
@@ -135,30 +140,195 @@ namespace KNAK
 
             PreRenderBackground();
 
-            AttachButtonHover(btnBack, Color.FromArgb(200, 30, 35, 48), Color.FromArgb(240, 220, 53, 69));
-            AttachButtonHover(btnRestart, Color.FromArgb(200, 30, 35, 48), Color.FromArgb(240, 0, 123, 255));
+            // INGREDIENTS CLICK WITH PAUSE GUARD
+            pboxEggsBasket.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🥚 Sariwang itlog ng pugo!", Color.FromArgb(245, 158, 11)); };
+            pboxBatterBowl.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🥣 Kwek-kwek batter ready!", Color.FromArgb(249, 115, 22)); };
+            pboxMeatBowl.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🥩 Malinamnam na beef pares!", Color.FromArgb(239, 68, 68)); };
+            pboxFryer.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🔥 Mainit na mantika!", Color.FromArgb(234, 179, 8)); };
+            pboxPares.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🍲 Kumukulong pares broth!", Color.FromArgb(244, 63, 94)); };
+            pboxTray.Click += (s, e) => { if (!isPaused && !isMatchOver) ShowFloatingToast("🍱 Serving tray!", Color.FromArgb(148, 163, 184)); };
 
-            try
-            {
-                picFood.BackgroundImage = null;
-                picFood.Image = TrimTransparentEdges(Properties.Resources.ready_to_serve_kwekkwek);
-                picFood.SizeMode = PictureBoxSizeMode.Zoom;
-            }
-            catch { }
-
-            pboxEggsBasket.Click += (s, e) => ShowFloatingToast("🥚 Sariwang itlog ng pugo!", Color.FromArgb(245, 158, 11));
-            pboxBatterBowl.Click += (s, e) => ShowFloatingToast("🥣 Kwek-kwek batter ready!", Color.FromArgb(249, 115, 22));
-            pboxMeatBowl.Click += (s, e) => ShowFloatingToast("🥩 Malinamnam na beef pares!", Color.FromArgb(239, 68, 68));
-            pboxFryer.Click += (s, e) => ShowFloatingToast("🔥 Mainit na mantika!", Color.FromArgb(234, 179, 8));
-            pboxPares.Click += (s, e) => ShowFloatingToast("🍲 Kumukulong pares broth!", Color.FromArgb(244, 63, 94));
-            pboxTray.Click += (s, e) => ShowFloatingToast("🍱 Serving tray!", Color.FromArgb(148, 163, 184));
+            // ATTACH CONTROLS
+            SetupPauseIconControl();
+            SetupPauseDesignerControls();
+            SetupShiftClearDesignerControls();
 
             BuildInMatchHud();
-            BuildPatienceBar();
             BuildFloatingToast();
             BuildResultModal();
 
             ResetGameMatch();
+        }
+
+        // --- HOOK PAUSEICON FUNCTIONALITY ---
+        private void SetupPauseIconControl()
+        {
+            try
+            {
+                Control? pIcon = Controls.Find("pauseicon", true).FirstOrDefault();
+                if (pIcon != null)
+                {
+                    pIcon.Cursor = Cursors.Hand;
+                    pIcon.Click += (s, e) => TogglePauseGame();
+                    pIcon.BringToFront();
+                }
+            }
+            catch { }
+        }
+
+        // --- BIND PAUSE MENU CONTROLS ---
+        private void SetupPauseDesignerControls()
+        {
+            try
+            {
+                ctrlPauseBox = Controls.Find("pausebox", true).FirstOrDefault();
+                ctrlBtnResume = Controls.Find("btnresume", true).FirstOrDefault();
+                ctrlRestart = Controls.Find("restart", true).FirstOrDefault();
+                ctrlMainMenu = Controls.Find("mainmenu", true).FirstOrDefault();
+
+                if (ctrlBtnResume != null)
+                {
+                    ctrlBtnResume.Cursor = Cursors.Hand;
+                    ctrlBtnResume.Click += (s, e) => ResumeGame();
+                }
+
+                if (ctrlRestart != null)
+                {
+                    ctrlRestart.Cursor = Cursors.Hand;
+                    ctrlRestart.Click += (s, e) => { ResumeGame(); ResetGameMatch(); };
+                }
+
+                if (ctrlMainMenu != null)
+                {
+                    ctrlMainMenu.Cursor = Cursors.Hand;
+                    ctrlMainMenu.Click += (s, e) => btnBack_Click(s, e);
+                }
+
+                SetPauseUIVisibility(false);
+            }
+            catch { }
+        }
+
+        private void SetPauseUIVisibility(bool visible)
+        {
+            if (ctrlPauseBox != null) ctrlPauseBox.Visible = visible;
+            if (ctrlBtnResume != null) ctrlBtnResume.Visible = visible;
+            if (ctrlRestart != null) ctrlRestart.Visible = visible;
+            if (ctrlMainMenu != null) ctrlMainMenu.Visible = visible;
+
+            if (visible)
+            {
+                ctrlPauseBox?.BringToFront();
+                ctrlBtnResume?.BringToFront();
+                ctrlRestart?.BringToFront();
+                ctrlMainMenu?.BringToFront();
+            }
+        }
+
+        // --- BIND SHIFT CLEARED CONTROLS (shiftbox, nextday1, showquota) ---
+        private void SetupShiftClearDesignerControls()
+        {
+            try
+            {
+                ctrlShiftBox = Controls.Find("shiftbox", true).FirstOrDefault();
+                ctrlNextDay = Controls.Find("nextday1", true).FirstOrDefault();
+                ctrlShowQuota = Controls.Find("showquota", true).FirstOrDefault();
+
+                if (ctrlNextDay != null)
+                {
+                    ctrlNextDay.Cursor = Cursors.Hand;
+                    ctrlNextDay.Click += (s, e) =>
+                    {
+                        SetShiftClearUIVisibility(false);
+                        ResetGameMatch();
+                    };
+                }
+
+                if (ctrlShowQuota != null)
+                {
+                    lblQuotaTextDisplay.Parent = ctrlShowQuota;
+                    lblQuotaTextDisplay.Dock = DockStyle.Fill;
+                    lblQuotaTextDisplay.BackColor = Color.Transparent;
+                    lblQuotaTextDisplay.ForeColor = Color.FromArgb(255, 215, 0); // Gold Text
+                    lblQuotaTextDisplay.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+                    lblQuotaTextDisplay.TextAlign = ContentAlignment.MiddleCenter;
+                    lblQuotaTextDisplay.Text = "₱0";
+                }
+
+                SetShiftClearUIVisibility(false);
+            }
+            catch { }
+        }
+
+        private void SetShiftClearUIVisibility(bool visible)
+        {
+            if (ctrlShiftBox != null) ctrlShiftBox.Visible = visible;
+            if (ctrlNextDay != null) ctrlNextDay.Visible = visible;
+            if (ctrlShowQuota != null) ctrlShowQuota.Visible = visible;
+
+            if (visible)
+            {
+                ctrlShiftBox?.BringToFront();
+                ctrlShowQuota?.BringToFront();
+                ctrlNextDay?.BringToFront();
+            }
+        }
+
+        // --- PAUSE & RESUME LOGIC ---
+        private void TogglePauseGame()
+        {
+            if (isMatchOver) return;
+
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
+        private void PauseGame()
+        {
+            if (isMatchOver || isPaused) return;
+
+            isPaused = true;
+
+            // Ihinto ang lahat ng timers
+            shiftTimer.Stop();
+            patienceTimer.Stop();
+            spawnTimer.Stop();
+            Walktimer.Stop();
+
+            SetPauseUIVisibility(true);
+            ApplyZOrder();
+        }
+
+        private void ResumeGame()
+        {
+            if (!isPaused) return;
+
+            isPaused = false;
+            SetPauseUIVisibility(false);
+
+            // Ipagpatuloy ang mga kinakailangang timers
+            shiftTimer.Start();
+            spawnTimer.Start();
+
+            bool anyArrived = slots.Any(s => s != null && s.IsOccupied && s.IsArrived && !s.IsLeaving);
+            if (anyArrived)
+            {
+                patienceTimer.Start();
+            }
+
+            bool anyMoving = slots.Any(s => s != null && s.IsOccupied && ((!s.IsArrived) || s.IsLeaving));
+            if (anyMoving)
+            {
+                Walktimer.Start();
+            }
+
+            ApplyZOrder();
         }
 
         private void InitializeCustomerPool()
@@ -214,14 +384,22 @@ namespace KNAK
             return originalWorkerImage;
         }
 
-        // --- SETUP UNIFORM 3-CUSTOMER SLOTS UI ---
+        private Image GetTapsilogImage()
+        {
+            if (picFood != null && picFood.Image != null)
+                return picFood.Image;
+
+            Image? embedded = LoadOrderImage();
+            if (embedded != null)
+                return embedded;
+
+            return Properties.Resources.story_mode_bg;
+        }
+
+        // --- SETUP KONSISTENT AT BALANSENG SPEECH BUBBLE & PICFOOD ---
         private void SetupCustomerSlotsUI()
         {
-            pnlBubbleChat.Size = new Size(150, 85);
-            picFood.Location = new Point(25, 20);
-            picFood.Size = new Size(42, 42);
-            lblQuantity.Location = new Point(72, 28);
-            lblQuantity.Size = new Size(45, 25);
+            Image tapsilogImg = GetTapsilogImage();
 
             for (int i = 0; i < 3; i++)
             {
@@ -232,82 +410,77 @@ namespace KNAK
                 if (i == 0)
                 {
                     slot.PicCustomer = picCustomer;
-                    slot.PnlBubble = pnlBubbleChat;
-                    slot.PnlPatienceBar = pnlPatienceBar;
                 }
                 else
                 {
                     slot.PicCustomer = new PictureBox
                     {
-                        Size = originalWorkerSize,
-                        SizeMode = PictureBoxSizeMode.StretchImage,
                         BackColor = Color.Transparent,
                         Cursor = Cursors.Hand,
                         Visible = false
                     };
-
-                    slot.PnlBubble = new Panel
-                    {
-                        Size = new Size(150, 85),
-                        BackgroundImage = Properties.Resources.speech_bubble_,
-                        BackgroundImageLayout = ImageLayout.Stretch,
-                        BackColor = Color.Transparent,
-                        Visible = false
-                    };
-
-                    PictureBox pboxFood = new PictureBox
-                    {
-                        Image = picFood.Image,
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Size = new Size(42, 42),
-                        Location = new Point(25, 20),
-                        BackColor = Color.Transparent,
-                        Cursor = Cursors.Hand
-                    };
-
-                    Label lblQty = new Label
-                    {
-                        Text = "× 1",
-                        Font = lblQuantity.Font,
-                        ForeColor = lblQuantity.ForeColor,
-                        Size = new Size(45, 25),
-                        Location = new Point(72, 28),
-                        BackColor = Color.Transparent,
-                        TextAlign = ContentAlignment.MiddleCenter
-                    };
-
-                    slot.PnlBubble.Controls.Add(pboxFood);
-                    slot.PnlBubble.Controls.Add(lblQty);
-
-                    slot.PnlPatienceBar = new Panel
-                    {
-                        Size = new Size(115, 20),
-                        BackColor = Color.Transparent,
-                        Visible = false
-                    };
-
                     Controls.Add(slot.PicCustomer);
-                    Controls.Add(slot.PnlBubble);
-                    Controls.Add(slot.PnlPatienceBar);
                 }
 
-                slot.PnlBubble.Size = new Size(150, 85);
-                slot.PnlPatienceBar.Size = new Size(115, 20);
-                slot.PnlPatienceBar.BackColor = Color.Transparent;
+                slot.PicCustomer.Size = new Size(260, 255);
+                slot.PicCustomer.SizeMode = PictureBoxSizeMode.Normal;
+                slot.PicCustomer.Controls.Clear();
+
+                // COMPACT AT PANTAY NA SPEECH BUBBLE (135x105)
+                Panel bubble = new Panel
+                {
+                    Size = new Size(135, 105),
+                    Location = new Point(100, 5),
+                    BackgroundImage = Properties.Resources.speech_bubble_,
+                    BackgroundImageLayout = ImageLayout.Stretch,
+                    BackColor = Color.Transparent,
+                    Cursor = Cursors.Hand,
+                    Visible = false
+                };
+
+                // PICFOOD (55x55) - NAKAGITNANG-GITNA SA PUTING BUBBLE AREA
+                PictureBox pboxFood = new PictureBox
+                {
+                    Image = tapsilogImg,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    Size = new Size(55, 55),
+                    Location = new Point(38, 16),
+                    BackColor = Color.Transparent,
+                    Cursor = Cursors.Hand
+                };
+
+                bubble.Controls.Add(pboxFood);
+
+                // PATIENCE BAR BELOW THE BUBBLE
+                Panel patienceBar = new Panel
+                {
+                    Size = new Size(120, 20),
+                    Location = new Point(100, 115),
+                    BackColor = Color.Transparent,
+                    Visible = false
+                };
+
+                slot.PicCustomer.Controls.Add(bubble);
+                slot.PicCustomer.Controls.Add(patienceBar);
+
+                slot.PnlBubble = bubble;
+                slot.PnlPatienceBar = patienceBar;
 
                 int index = i;
                 slot.PicCustomer.Click += (s, e) => TryServeSlot(index);
-                slot.PnlBubble.Click += (s, e) => TryServeSlot(index);
-                slot.PnlPatienceBar.Paint += (s, e) => DrawSlotPatienceBar(e.Graphics, slots[index]);
+                bubble.Click += (s, e) => TryServeSlot(index);
+                pboxFood.Click += (s, e) => TryServeSlot(index);
+
+                patienceBar.Paint += (s, e) => DrawSlotPatienceBar(e.Graphics, slots[index]);
 
                 slots[i] = slot;
             }
         }
 
-        // --- 5-SECOND SPAWN TIMER TICK ---
+        // --- SPAWN TIMER TICK ---
         private void SpawnTimer_Tick(object? sender, EventArgs e)
         {
-            if (isMatchOver) return;
+            if (isMatchOver || isPaused) return;
 
             for (int i = 0; i < 3; i++)
             {
@@ -340,17 +513,16 @@ namespace KNAK
             {
                 using (Bitmap bmp = new Bitmap(slot.Profile.NormalImage))
                 {
-                    slot.PicCustomer.Image = TrimTransparentEdges(bmp);
+                    Bitmap trimmed = TrimTransparentEdges(bmp);
+                    slot.PicCustomer.Image = new Bitmap(trimmed, originalWorkerSize);
                 }
             }
 
-            slot.PicCustomer.Size = originalWorkerSize;
-            slot.PicCustomer.SizeMode = PictureBoxSizeMode.StretchImage;
             slot.PicCustomer.Visible = true;
-            slot.PnlBubble.Visible = false;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
             slot.PnlPatienceBar.Visible = false;
 
-            if (!Walktimer.Enabled)
+            if (!Walktimer.Enabled && !isPaused)
                 Walktimer.Start();
 
             ApplyZOrder();
@@ -359,6 +531,8 @@ namespace KNAK
         // --- WALKING ANIMATION LOGIC ---
         private void Walktimer_Tick(object? sender, EventArgs e)
         {
+            if (isPaused) return;
+
             bool anyMoving = false;
 
             for (int i = 0; i < 3; i++)
@@ -368,7 +542,6 @@ namespace KNAK
 
                 if (!slot.IsLeaving)
                 {
-                    // WALKING TO COUNTER
                     if (slot.SpawnFromLeft)
                     {
                         if (slot.CurrentX < slot.TargetX)
@@ -410,7 +583,6 @@ namespace KNAK
                 }
                 else
                 {
-                    // LEAVING COUNTER
                     if (slot.LeaveToRight)
                     {
                         slot.CurrentX += speed;
@@ -440,11 +612,6 @@ namespace KNAK
                         }
                     }
                 }
-
-                if (slot.IsArrived && !slot.IsLeaving)
-                {
-                    UpdateSlotBubblePositions(slot);
-                }
             }
 
             if (!anyMoving)
@@ -459,38 +626,25 @@ namespace KNAK
             slot.IsArrived = false;
             slot.IsLeaving = false;
             slot.PicCustomer.Visible = false;
-            slot.PnlBubble.Visible = false;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
             slot.PnlPatienceBar.Visible = false;
         }
 
         private void OnSlotArrivedAtCounter(CustomerSlot slot)
         {
-            UpdateSlotBubblePositions(slot);
-            slot.PnlBubble.Visible = true;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = true;
             slot.PnlPatienceBar.Visible = true;
 
-            if (!patienceTimer.Enabled)
+            if (!patienceTimer.Enabled && !isPaused)
                 patienceTimer.Start();
 
             ApplyZOrder();
         }
 
-        private void UpdateSlotBubblePositions(CustomerSlot slot)
-        {
-            int bubbleX = slot.PicCustomer.Left + 110;
-            int bubbleY = slot.PicCustomer.Top + 5;
-
-            slot.PnlBubble.Size = new Size(150, 85);
-            slot.PnlBubble.Location = new Point(bubbleX, bubbleY);
-
-            slot.PnlPatienceBar.Size = new Size(115, 20);
-            slot.PnlPatienceBar.Location = new Point(bubbleX + 15, bubbleY + 88);
-        }
-
         // --- PATIENCE & ANGRY FACE SYSTEM ---
         private void PatienceTimer_Tick(object? sender, EventArgs e)
         {
-            if (isMatchOver) return;
+            if (isMatchOver || isPaused) return;
 
             bool anyArrived = false;
 
@@ -529,19 +683,19 @@ namespace KNAK
             {
                 using (Bitmap bmp = new Bitmap(slot.Profile.AngryImage))
                 {
-                    slot.PicCustomer.Image = TrimTransparentEdges(bmp);
+                    Bitmap trimmed = TrimTransparentEdges(bmp);
+                    slot.PicCustomer.Image = new Bitmap(trimmed, originalWorkerSize);
                 }
             }
-            slot.PicCustomer.SizeMode = PictureBoxSizeMode.StretchImage;
             ApplyZOrder();
         }
 
         private void TryServeSlot(int slotIndex)
         {
             CustomerSlot slot = slots[slotIndex];
-            if (isMatchOver || !slot.IsOccupied || !slot.IsArrived || slot.IsLeaving) return;
+            if (isMatchOver || isPaused || !slot.IsOccupied || !slot.IsArrived || slot.IsLeaving) return;
 
-            slot.PnlBubble.Visible = false;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
             slot.PnlPatienceBar.Visible = false;
 
             float ratio = slot.CurrentPatience / MaxPatienceSeconds;
@@ -581,13 +735,13 @@ namespace KNAK
             }
 
             slot.IsLeaving = true;
-            if (!Walktimer.Enabled)
+            if (!Walktimer.Enabled && !isPaused)
                 Walktimer.Start();
         }
 
         private void HandleSlotWalkOut(CustomerSlot slot)
         {
-            slot.PnlBubble.Visible = false;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
             slot.PnlPatienceBar.Visible = false;
 
             walkoutCount++;
@@ -603,7 +757,7 @@ namespace KNAK
             }
 
             slot.IsLeaving = true;
-            if (!Walktimer.Enabled)
+            if (!Walktimer.Enabled && !isPaused)
                 Walktimer.Start();
         }
 
@@ -663,7 +817,7 @@ namespace KNAK
                     g.FillPath(fillBrush, fillPath);
                 }
 
-                using (Font font = new Font("Segoe UI", 8F, FontStyle.Bold))
+                using (Font font = new Font("Segoe UI", 7.5F, FontStyle.Bold))
                 using (SolidBrush textBrush = new SolidBrush(Color.White))
                 {
                     StringFormat sf = new StringFormat
@@ -680,7 +834,11 @@ namespace KNAK
         private void ResetGameMatch()
         {
             pnlResultModal.Visible = false;
+            SetPauseUIVisibility(false);
+            SetShiftClearUIVisibility(false);
+
             isMatchOver = false;
+            isPaused = false;
 
             currentRevenue = 0;
             walkoutCount = 0;
@@ -746,14 +904,6 @@ namespace KNAK
             lblWalkoutsHud.TextAlign = ContentAlignment.MiddleCenter;
             lblWalkoutsHud.Text = "💔 0 / 3";
             Controls.Add(lblWalkoutsHud);
-        }
-
-        private void BuildPatienceBar()
-        {
-            pnlPatienceBar.Size = new Size(115, 20);
-            pnlPatienceBar.BackColor = Color.Transparent;
-            pnlPatienceBar.Visible = false;
-            Controls.Add(pnlPatienceBar);
         }
 
         private void BuildFloatingToast()
@@ -833,9 +983,7 @@ namespace KNAK
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             using (GraphicsPath path = GetRoundedRectanglePath(new Rectangle(0, 0, pnlResultModal.Width - 1, pnlResultModal.Height - 1), 16))
             {
-                Color borderColor = currentRevenue >= TargetRevenue
-                    ? Color.FromArgb(250, 204, 21)
-                    : Color.FromArgb(239, 68, 68);
+                Color borderColor = Color.FromArgb(239, 68, 68);
                 using (Pen pen = new Pen(borderColor, 2.5f))
                 {
                     e.Graphics.DrawPath(pen, path);
@@ -845,7 +993,7 @@ namespace KNAK
 
         private void ShiftTimer_Tick(object? sender, EventArgs e)
         {
-            if (isMatchOver) return;
+            if (isMatchOver || isPaused) return;
 
             shiftSecondsLeft--;
             UpdateHudDisplay();
@@ -864,7 +1012,7 @@ namespace KNAK
         {
             lblFloatingToast.Text = text;
             lblFloatingToast.ForeColor = color;
-            lblFloatingToast.Location = new Point(posX, baseY + 40);
+            lblFloatingToast.Location = new Point(posX, baseY + 140);
             lblFloatingToast.Visible = true;
             lblFloatingToast.BringToFront();
 
@@ -894,6 +1042,7 @@ namespace KNAK
             lblWalkoutsHud.Text = $"💔 {walkoutCount} / {MaxWalkouts}";
         }
 
+        // --- HANDLE VICTORY (SHIFT CLEARED WITH YOUR DESIGNER UI) ---
         private void HandleVictory()
         {
             isMatchOver = true;
@@ -902,23 +1051,14 @@ namespace KNAK
             spawnTimer.Stop();
             Walktimer.Stop();
 
-            pnlResultModal.Visible = true;
+            // LALAGAY ANG NAIPONG HALAGA SA LIGHT BROWN SQUARE (showquota)
+            lblQuotaTextDisplay.Text = $"₱{currentRevenue}";
 
-            lblModalTitle.Text = "🎉 SHIFT COMPLETED!";
-            lblModalTitle.ForeColor = Color.FromArgb(250, 204, 21);
-            lblModalSubtitle.Text = "Daily Revenue Quota Achieved! Outstanding Job!";
-
-            int mins = shiftSecondsLeft / 60;
-            int secs = shiftSecondsLeft % 60;
-            lblModalStats.Text =
-                $"💰 Final Revenue: ₱{currentRevenue} (Target: ₱{TargetRevenue})\n\n" +
-                $"👥 Customers Served: {customersServed}\n" +
-                $"💔 Walkouts: {walkoutCount} / {MaxWalkouts}\n" +
-                $"⏱️ Shift Time Left: {mins:00}:{secs:00}";
-
+            SetShiftClearUIVisibility(true);
             ApplyZOrder();
         }
 
+        // --- HANDLE GAME OVER (SHIFT FAILED) ---
         private void HandleGameOver(string reason)
         {
             isMatchOver = true;
@@ -949,17 +1089,15 @@ namespace KNAK
                 if (slots[i] != null)
                 {
                     slots[i].PicCustomer.BringToFront();
-                    slots[i].PnlBubble.BringToFront();
-                    slots[i].PnlPatienceBar.BringToFront();
                 }
             }
 
-            pboxFryer.BringToFront();
-            pboxEggsBasket.BringToFront();
-            pboxBatterBowl.BringToFront();
-            pboxMeatBowl.BringToFront();
             pboxTray.BringToFront();
+            pboxBatterBowl.BringToFront();
+            pboxEggsBasket.BringToFront();
+            pboxMeatBowl.BringToFront();
             pboxPares.BringToFront();
+            pboxFryer.BringToFront();
 
             lblStage.BringToFront();
             lblTimerHud.BringToFront();
@@ -967,13 +1105,61 @@ namespace KNAK
             lblWalkoutsHud.BringToFront();
             lblFloatingToast.BringToFront();
 
-            if (btnBack != null) btnBack.BringToFront();
-            if (btnRestart != null) btnRestart.BringToFront();
+            Control? pIcon = Controls.Find("pauseicon", true).FirstOrDefault();
+            if (pIcon != null) pIcon.BringToFront();
+
+            if (isPaused)
+            {
+                SetPauseUIVisibility(true);
+            }
+
+            if (isMatchOver && (ctrlShiftBox != null && ctrlShiftBox.Visible))
+            {
+                SetShiftClearUIVisibility(true);
+            }
 
             if (pnlResultModal.Visible)
             {
                 pnlResultModal.BringToFront();
             }
+        }
+
+        private Bitmap? LoadOrderImage()
+        {
+            try
+            {
+                using (var stream = typeof(GAME).Assembly.GetManifestResourceStream("tapsilog.png"))
+                {
+                    if (stream != null)
+                    {
+                        using (var img = Image.FromStream(stream))
+                        {
+                            return new Bitmap(img);
+                        }
+                    }
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        private Image LoadStage1Background()
+        {
+            try
+            {
+                using (var stream = typeof(GAME).Assembly.GetManifestResourceStream("stage1_bg.png"))
+                {
+                    if (stream != null)
+                    {
+                        using (var img = Image.FromStream(stream))
+                        {
+                            return new Bitmap(img);
+                        }
+                    }
+                }
+            }
+            catch { }
+            return new Bitmap(Properties.Resources.story_mode_bg);
         }
 
         private void PreRenderBackground()
@@ -986,7 +1172,10 @@ namespace KNAK
                 {
                     g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                     g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-                    g.DrawImage(Properties.Resources.story_mode_bg, 0, 0, ClientSize.Width, ClientSize.Height);
+                    using (Image stage1Bg = LoadStage1Background())
+                    {
+                        g.DrawImage(stage1Bg, 0, 0, ClientSize.Width, ClientSize.Height);
+                    }
                 }
                 cachedBackground?.Dispose();
                 cachedBackground = bmp;
@@ -1094,7 +1283,7 @@ namespace KNAK
     }
 
     // =========================================================
-    // 2. MGA HELPER CLASSES (INILIPAT SA BABA NG GAME CLASS)
+    // 2. HELPER CLASSES
     // =========================================================
     public class CustomerProfile
     {
@@ -1112,7 +1301,6 @@ namespace KNAK
         public bool IsLeaving { get; set; } = false;
         public bool IsAngry { get; set; } = false;
 
-        // Walking Direction Flags
         public bool SpawnFromLeft { get; set; } = true;
         public bool LeaveToRight { get; set; } = true;
 
@@ -1123,7 +1311,7 @@ namespace KNAK
         public CustomerProfile? Profile { get; set; }
 
         public PictureBox PicCustomer { get; set; } = null!;
-        public Panel PnlBubble { get; set; } = null!;
+        public Control PnlBubble { get; set; } = null!;
         public Panel PnlPatienceBar { get; set; } = null!;
     }
 }

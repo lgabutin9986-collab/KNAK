@@ -33,29 +33,43 @@ namespace KNAK
         private void InitializeComponent()
         {
             components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(GAME));
             picCustomer = new PictureBox();
             Walktimer = new System.Windows.Forms.Timer(components);
-            btnBack = new Button();
-            btnRestart = new Button();
             lblStage = new Label();
-            pnlBubbleChat = new Panel();
-            lblQuantity = new Label();
             picFood = new PictureBox();
-            pboxFryer = new PictureBox();
             pboxPares = new PictureBox();
-            pboxEggsBasket = new PictureBox();
-            pboxBatterBowl = new PictureBox();
-            pboxMeatBowl = new PictureBox();
             pboxTray = new PictureBox();
+            pboxMeatBowl = new PictureBox();
+            pboxBatterBowl = new PictureBox();
+            pboxEggsBasket = new PictureBox();
+            pboxFryer = new PictureBox();
+            picBubbleChat = new PictureBox();
+            pauseicon = new PictureBox();
+            pausebox = new PictureBox();
+            btnresume = new PictureBox();
+            restart = new PictureBox();
+            mainmenu = new PictureBox();
+            shiftbox = new PictureBox();
+            nextday1 = new PictureBox();
+            showquota = new PictureBox();
             ((ISupportInitialize)picCustomer).BeginInit();
-            pnlBubbleChat.SuspendLayout();
             ((ISupportInitialize)picFood).BeginInit();
-            ((ISupportInitialize)pboxFryer).BeginInit();
             ((ISupportInitialize)pboxPares).BeginInit();
-            ((ISupportInitialize)pboxEggsBasket).BeginInit();
-            ((ISupportInitialize)pboxBatterBowl).BeginInit();
-            ((ISupportInitialize)pboxMeatBowl).BeginInit();
             ((ISupportInitialize)pboxTray).BeginInit();
+            ((ISupportInitialize)pboxMeatBowl).BeginInit();
+            ((ISupportInitialize)pboxBatterBowl).BeginInit();
+            ((ISupportInitialize)pboxEggsBasket).BeginInit();
+            ((ISupportInitialize)pboxFryer).BeginInit();
+            ((ISupportInitialize)picBubbleChat).BeginInit();
+            ((ISupportInitialize)pauseicon).BeginInit();
+            ((ISupportInitialize)pausebox).BeginInit();
+            ((ISupportInitialize)btnresume).BeginInit();
+            ((ISupportInitialize)restart).BeginInit();
+            ((ISupportInitialize)mainmenu).BeginInit();
+            ((ISupportInitialize)shiftbox).BeginInit();
+            ((ISupportInitialize)nextday1).BeginInit();
+            ((ISupportInitialize)showquota).BeginInit();
             SuspendLayout();
             // 
             // picCustomer
@@ -75,38 +89,6 @@ namespace KNAK
             // 
             Walktimer.Interval = 16;
             // 
-            // btnBack
-            // 
-            btnBack.BackColor = Color.FromArgb(200, 30, 35, 48);
-            btnBack.Cursor = Cursors.Hand;
-            btnBack.FlatAppearance.BorderSize = 0;
-            btnBack.FlatStyle = FlatStyle.Flat;
-            btnBack.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnBack.ForeColor = Color.White;
-            btnBack.Location = new Point(16, 16);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(110, 38);
-            btnBack.TabIndex = 1;
-            btnBack.Text = "← Main Menu";
-            btnBack.UseVisualStyleBackColor = false;
-            btnBack.Click += btnBack_Click;
-            // 
-            // btnRestart
-            // 
-            btnRestart.BackColor = Color.FromArgb(200, 30, 35, 48);
-            btnRestart.Cursor = Cursors.Hand;
-            btnRestart.FlatAppearance.BorderSize = 0;
-            btnRestart.FlatStyle = FlatStyle.Flat;
-            btnRestart.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
-            btnRestart.ForeColor = Color.White;
-            btnRestart.Location = new Point(136, 16);
-            btnRestart.Name = "btnRestart";
-            btnRestart.Size = new Size(100, 38);
-            btnRestart.TabIndex = 2;
-            btnRestart.Text = "↻ Restart";
-            btnRestart.UseVisualStyleBackColor = false;
-            btnRestart.Click += btnRestart_Click;
-            // 
             // lblStage
             // 
             lblStage.BackColor = Color.FromArgb(210, 20, 24, 33);
@@ -119,56 +101,19 @@ namespace KNAK
             lblStage.Text = "STAGE 1";
             lblStage.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // pnlBubbleChat
-            // 
-            pnlBubbleChat.BackColor = Color.Transparent;
-            pnlBubbleChat.BackgroundImage = Properties.Resources.speech_bubble_;
-            pnlBubbleChat.BackgroundImageLayout = ImageLayout.Stretch;
-            pnlBubbleChat.Controls.Add(lblQuantity);
-            pnlBubbleChat.Controls.Add(picFood);
-            pnlBubbleChat.Location = new Point(455, 16);
-            pnlBubbleChat.Name = "pnlBubbleChat";
-            pnlBubbleChat.Size = new Size(321, 145);
-            pnlBubbleChat.TabIndex = 4;
-            pnlBubbleChat.Visible = false;
-            pnlBubbleChat.Paint += pnlDialogue_Paint;
-            // 
-            // lblQuantity
-            // 
-            lblQuantity.BackColor = Color.Transparent;
-            lblQuantity.Font = new Font("Segoe UI", 11.5F, FontStyle.Bold);
-            lblQuantity.ForeColor = Color.FromArgb(180, 83, 9);
-            lblQuantity.Location = new Point(162, 48);
-            lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(48, 30);
-            lblQuantity.TabIndex = 5;
-            lblQuantity.Text = "× 1";
-            lblQuantity.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // picFood
             // 
             picFood.BackColor = Color.Transparent;
-            picFood.BackgroundImage = Properties.Resources.ready_to_serve_kwekkwek;
-            picFood.BackgroundImageLayout = ImageLayout.Zoom;
+            picFood.BackgroundImageLayout = ImageLayout.None;
             picFood.Cursor = Cursors.Hand;
-            picFood.Location = new Point(106, 38);
+            picFood.Image = Properties.Resources.tapsilog;
+            picFood.Location = new Point(563, 45);
             picFood.Name = "picFood";
-            picFood.Size = new Size(54, 52);
-            picFood.SizeMode = PictureBoxSizeMode.Zoom;
+            picFood.Size = new Size(41, 42);
+            picFood.SizeMode = PictureBoxSizeMode.StretchImage;
             picFood.TabIndex = 0;
             picFood.TabStop = false;
-            // 
-            // pboxFryer
-            // 
-            pboxFryer.BackColor = Color.Transparent;
-            pboxFryer.Cursor = Cursors.Hand;
-            pboxFryer.Image = Properties.Resources.deep_fryer_trimmed;
-            pboxFryer.Location = new Point(32, 218);
-            pboxFryer.Name = "pboxFryer";
-            pboxFryer.Size = new Size(130, 145);
-            pboxFryer.SizeMode = PictureBoxSizeMode.Zoom;
-            pboxFryer.TabIndex = 6;
-            pboxFryer.TabStop = false;
+            picFood.Visible = false;
             // 
             // pboxPares
             // 
@@ -182,29 +127,17 @@ namespace KNAK
             pboxPares.TabIndex = 7;
             pboxPares.TabStop = false;
             // 
-            // pboxEggsBasket
+            // pboxTray
             // 
-            pboxEggsBasket.BackColor = Color.Transparent;
-            pboxEggsBasket.Cursor = Cursors.Hand;
-            pboxEggsBasket.Image = Properties.Resources.raw_eggs_basket;
-            pboxEggsBasket.Location = new Point(176, 266);
-            pboxEggsBasket.Name = "pboxEggsBasket";
-            pboxEggsBasket.Size = new Size(84, 88);
-            pboxEggsBasket.SizeMode = PictureBoxSizeMode.Zoom;
-            pboxEggsBasket.TabIndex = 8;
-            pboxEggsBasket.TabStop = false;
-            // 
-            // pboxBatterBowl
-            // 
-            pboxBatterBowl.BackColor = Color.Transparent;
-            pboxBatterBowl.Cursor = Cursors.Hand;
-            pboxBatterBowl.Image = Properties.Resources.kwekkwek_batter_bowl;
-            pboxBatterBowl.Location = new Point(272, 274);
-            pboxBatterBowl.Name = "pboxBatterBowl";
-            pboxBatterBowl.Size = new Size(92, 80);
-            pboxBatterBowl.SizeMode = PictureBoxSizeMode.Zoom;
-            pboxBatterBowl.TabIndex = 9;
-            pboxBatterBowl.TabStop = false;
+            pboxTray.BackColor = Color.Transparent;
+            pboxTray.Cursor = Cursors.Hand;
+            pboxTray.Image = Properties.Resources.tray_trimmed;
+            pboxTray.Location = new Point(485, 310);
+            pboxTray.Name = "pboxTray";
+            pboxTray.Size = new Size(130, 42);
+            pboxTray.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxTray.TabIndex = 11;
+            pboxTray.TabStop = false;
             // 
             // pboxMeatBowl
             // 
@@ -218,35 +151,165 @@ namespace KNAK
             pboxMeatBowl.TabIndex = 10;
             pboxMeatBowl.TabStop = false;
             // 
-            // pboxTray
+            // pboxBatterBowl
             // 
-            pboxTray.BackColor = Color.Transparent;
-            pboxTray.Cursor = Cursors.Hand;
-            pboxTray.Image = Properties.Resources.tray_trimmed;
-            pboxTray.Location = new Point(485, 310);
-            pboxTray.Name = "pboxTray";
-            pboxTray.Size = new Size(130, 42);
-            pboxTray.SizeMode = PictureBoxSizeMode.Zoom;
-            pboxTray.TabIndex = 11;
-            pboxTray.TabStop = false;
+            pboxBatterBowl.BackColor = Color.Transparent;
+            pboxBatterBowl.Cursor = Cursors.Hand;
+            pboxBatterBowl.Image = Properties.Resources.kwekkwek_batter_bowl;
+            pboxBatterBowl.Location = new Point(272, 274);
+            pboxBatterBowl.Name = "pboxBatterBowl";
+            pboxBatterBowl.Size = new Size(92, 80);
+            pboxBatterBowl.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxBatterBowl.TabIndex = 9;
+            pboxBatterBowl.TabStop = false;
+            // 
+            // pboxEggsBasket
+            // 
+            pboxEggsBasket.BackColor = Color.Transparent;
+            pboxEggsBasket.Cursor = Cursors.Hand;
+            pboxEggsBasket.Image = Properties.Resources.raw_eggs_basket;
+            pboxEggsBasket.Location = new Point(176, 266);
+            pboxEggsBasket.Name = "pboxEggsBasket";
+            pboxEggsBasket.Size = new Size(84, 88);
+            pboxEggsBasket.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxEggsBasket.TabIndex = 8;
+            pboxEggsBasket.TabStop = false;
+            // 
+            // pboxFryer
+            // 
+            pboxFryer.BackColor = Color.Transparent;
+            pboxFryer.Cursor = Cursors.Hand;
+            pboxFryer.Image = Properties.Resources.deep_fryer_trimmed;
+            pboxFryer.Location = new Point(32, 218);
+            pboxFryer.Name = "pboxFryer";
+            pboxFryer.Size = new Size(130, 145);
+            pboxFryer.SizeMode = PictureBoxSizeMode.Zoom;
+            pboxFryer.TabIndex = 6;
+            pboxFryer.TabStop = false;
+            // 
+            // picBubbleChat
+            // 
+            picBubbleChat.BackColor = Color.Transparent;
+            picBubbleChat.Image = (Image)resources.GetObject("picBubbleChat.Image");
+            picBubbleChat.Location = new Point(547, 35);
+            picBubbleChat.Name = "picBubbleChat";
+            picBubbleChat.Size = new Size(125, 102);
+            picBubbleChat.SizeMode = PictureBoxSizeMode.Zoom;
+            picBubbleChat.TabIndex = 12;
+            picBubbleChat.TabStop = false;
+            picBubbleChat.Visible = false;
+            // 
+            // pauseicon
+            // 
+            pauseicon.BackColor = Color.Transparent;
+            pauseicon.Image = (Image)resources.GetObject("pauseicon.Image");
+            pauseicon.Location = new Point(916, 29);
+            pauseicon.Name = "pauseicon";
+            pauseicon.Size = new Size(53, 52);
+            pauseicon.SizeMode = PictureBoxSizeMode.Zoom;
+            pauseicon.TabIndex = 13;
+            pauseicon.TabStop = false;
+            // 
+            // pausebox
+            // 
+            pausebox.BackColor = Color.Transparent;
+            pausebox.Image = (Image)resources.GetObject("pausebox.Image");
+            pausebox.Location = new Point(370, 84);
+            pausebox.Name = "pausebox";
+            pausebox.Size = new Size(347, 316);
+            pausebox.SizeMode = PictureBoxSizeMode.Zoom;
+            pausebox.TabIndex = 14;
+            pausebox.TabStop = false;
+            // 
+            // btnresume
+            // 
+            btnresume.BackColor = Color.Sienna;
+            btnresume.Image = (Image)resources.GetObject("btnresume.Image");
+            btnresume.Location = new Point(450, 180);
+            btnresume.Name = "btnresume";
+            btnresume.Size = new Size(197, 62);
+            btnresume.SizeMode = PictureBoxSizeMode.Zoom;
+            btnresume.TabIndex = 15;
+            btnresume.TabStop = false;
+            // 
+            // restart
+            // 
+            restart.BackColor = Color.Transparent;
+            restart.Image = (Image)resources.GetObject("restart.Image");
+            restart.Location = new Point(449, 251);
+            restart.Name = "restart";
+            restart.Size = new Size(197, 60);
+            restart.SizeMode = PictureBoxSizeMode.Zoom;
+            restart.TabIndex = 16;
+            restart.TabStop = false;
+            // 
+            // mainmenu
+            // 
+            mainmenu.BackColor = Color.Transparent;
+            mainmenu.Image = (Image)resources.GetObject("mainmenu.Image");
+            mainmenu.Location = new Point(450, 320);
+            mainmenu.Name = "mainmenu";
+            mainmenu.Size = new Size(197, 61);
+            mainmenu.SizeMode = PictureBoxSizeMode.Zoom;
+            mainmenu.TabIndex = 17;
+            mainmenu.TabStop = false;
+            // 
+            // shiftbox
+            // 
+            shiftbox.BackColor = Color.Transparent;
+            shiftbox.Image = (Image)resources.GetObject("shiftbox.Image");
+            shiftbox.Location = new Point(327, 68);
+            shiftbox.Name = "shiftbox";
+            shiftbox.Size = new Size(413, 351);
+            shiftbox.SizeMode = PictureBoxSizeMode.Zoom;
+            shiftbox.TabIndex = 18;
+            shiftbox.TabStop = false;
+            // 
+            // nextday1
+            // 
+            nextday1.BackColor = Color.Transparent;
+            nextday1.Image = (Image)resources.GetObject("nextday1.Image");
+            nextday1.Location = new Point(417, 315);
+            nextday1.Name = "nextday1";
+            nextday1.Size = new Size(236, 84);
+            nextday1.SizeMode = PictureBoxSizeMode.Zoom;
+            nextday1.TabIndex = 19;
+            nextday1.TabStop = false;
+            // 
+            // showquota
+            // 
+            showquota.BackColor = Color.SaddleBrown;
+            showquota.Location = new Point(518, 241);
+            showquota.Name = "showquota";
+            showquota.Size = new Size(125, 62);
+            showquota.TabIndex = 20;
+            showquota.TabStop = false;
             // 
             // GAME
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = Properties.Resources.Stage1bg;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1024, 576);
+            Controls.Add(showquota);
+            Controls.Add(nextday1);
+            Controls.Add(shiftbox);
+            Controls.Add(mainmenu);
+            Controls.Add(restart);
+            Controls.Add(btnresume);
+            Controls.Add(pausebox);
+            Controls.Add(pauseicon);
+            Controls.Add(picFood);
             Controls.Add(lblStage);
-            Controls.Add(btnRestart);
-            Controls.Add(btnBack);
             Controls.Add(picCustomer);
-            Controls.Add(pnlBubbleChat);
             Controls.Add(pboxFryer);
             Controls.Add(pboxEggsBasket);
             Controls.Add(pboxBatterBowl);
             Controls.Add(pboxMeatBowl);
             Controls.Add(pboxTray);
             Controls.Add(pboxPares);
+            Controls.Add(picBubbleChat);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             Name = "GAME";
@@ -254,14 +317,22 @@ namespace KNAK
             Text = "KNAK - Stage 1";
             Load += GAME_Load;
             ((ISupportInitialize)picCustomer).EndInit();
-            pnlBubbleChat.ResumeLayout(false);
             ((ISupportInitialize)picFood).EndInit();
-            ((ISupportInitialize)pboxFryer).EndInit();
             ((ISupportInitialize)pboxPares).EndInit();
-            ((ISupportInitialize)pboxEggsBasket).EndInit();
-            ((ISupportInitialize)pboxBatterBowl).EndInit();
-            ((ISupportInitialize)pboxMeatBowl).EndInit();
             ((ISupportInitialize)pboxTray).EndInit();
+            ((ISupportInitialize)pboxMeatBowl).EndInit();
+            ((ISupportInitialize)pboxBatterBowl).EndInit();
+            ((ISupportInitialize)pboxEggsBasket).EndInit();
+            ((ISupportInitialize)pboxFryer).EndInit();
+            ((ISupportInitialize)picBubbleChat).EndInit();
+            ((ISupportInitialize)pauseicon).EndInit();
+            ((ISupportInitialize)pausebox).EndInit();
+            ((ISupportInitialize)btnresume).EndInit();
+            ((ISupportInitialize)restart).EndInit();
+            ((ISupportInitialize)mainmenu).EndInit();
+            ((ISupportInitialize)shiftbox).EndInit();
+            ((ISupportInitialize)nextday1).EndInit();
+            ((ISupportInitialize)showquota).EndInit();
             ResumeLayout(false);
         }
 
@@ -269,17 +340,22 @@ namespace KNAK
 
         private PictureBox picCustomer;
         private System.Windows.Forms.Timer Walktimer;
-        private Button btnBack;
-        private Button btnRestart;
         private Label lblStage;
-        private Panel pnlBubbleChat;
         private PictureBox picFood;
-        private Label lblQuantity;
-        private PictureBox pboxFryer;
         private PictureBox pboxPares;
-        private PictureBox pboxEggsBasket;
-        private PictureBox pboxBatterBowl;
-        private PictureBox pboxMeatBowl;
         private PictureBox pboxTray;
+        private PictureBox pboxMeatBowl;
+        private PictureBox pboxBatterBowl;
+        private PictureBox pboxEggsBasket;
+        private PictureBox pboxFryer;
+        private PictureBox picBubbleChat;
+        private PictureBox pauseicon;
+        private PictureBox pausebox;
+        private PictureBox btnresume;
+        private PictureBox restart;
+        private PictureBox mainmenu;
+        private PictureBox shiftbox;
+        private PictureBox nextday1;
+        private PictureBox showquota;
     }
 }

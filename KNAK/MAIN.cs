@@ -76,12 +76,7 @@ namespace KNAK
             this.Hide();
         }
 
-        private void btnEndless_Click(object sender, EventArgs e)
-        {
-            ENDLESS endlessForm = new ENDLESS(this);
-            endlessForm.Show();
-            this.Hide();
-        }
+
 
         protected override void OnFormClosed(FormClosedEventArgs e)
         {
