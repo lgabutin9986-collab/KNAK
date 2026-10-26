@@ -41,6 +41,321 @@ namespace KNAK
         private double fryerProgressValue = 0;
         private int fryerPhaseSeconds = 0;
 
+        public class CustomerProfile
+        {
+            public string Name { get; set; } = "";
+            public System.Drawing.Image? NormalImage { get; set; }
+            public System.Drawing.Image? AngryImage { get; set; }
+        }
+
+        public class CustomerSlot
+        {
+            public int SlotIndex { get; set; }
+            public int TargetX { get; set; }
+            public bool IsOccupied { get; set; } = false;
+            public bool IsArrived { get; set; } = false;
+            public bool IsLeaving { get; set; } = false;
+            public bool IsAngry { get; set; } = false;
+
+            public bool SpawnFromLeft { get; set; } = true;
+            public bool LeaveToRight { get; set; } = true;
+
+            public float CurrentX { get; set; }
+            public float CurrentPatience { get; set; } = 15.0f;
+            public int StepCount { get; set; } = 0;
+
+            public CustomerProfile? Profile { get; set; }
+
+            public PictureBox PicCustomer { get; set; } = null!;
+            public Control PnlBubble { get; set; } = null!;
+            public Panel PnlPatienceBar { get; set; } = null!;
+        }
+        // --- CUSTOMER SLOTS & RANDOM SPAWNING ---
+        private CustomerSlot[] slots = new CustomerSlot[3];
+        private readonly int[] slotTargetPositions = new int[] { 110, 385, 660 }; // Left, Center, Right slots
+        private float customerSpeed = 3.2f;
+
+        private readonly System.Windows.Forms.Timer spawnTimer = new System.Windows.Forms.Timer();
+        private readonly System.Windows.Forms.Timer patienceTimer = new System.Windows.Forms.Timer();
+        private readonly System.Windows.Forms.Timer walkTimer = new System.Windows.Forms.Timer();
+        private List<CustomerProfile> customerPool = new List<CustomerProfile>();
+        private Random rand = new Random();
+
+        private const float MaxPatienceSeconds = 15.0f;
+        private const int MaxWalkouts = 3; // 3 strikes = Game Over
+        private string currentOrder = "tapsilog"; // Current active order style
+
+        private void InitializeCustomerPool()
+        {
+            customerPool.Clear();
+
+            // 1. Worker
+            customerPool.Add(new CustomerProfile
+            {
+                Name = "Worker",
+                NormalImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\worker_normal_face - removebg - preview.png"),
+                AngryImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\worker angry face.png")
+            });
+
+            // 2. Mother
+            customerPool.Add(new CustomerProfile
+            {
+                Name = "Mother",
+                NormalImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\mother normal face.png"),
+                AngryImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\mother angry face.png")
+            });
+
+            // 3. Student
+            customerPool.Add(new CustomerProfile
+            {
+                Name = "Student",
+                NormalImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\student normal face.png"),
+                AngryImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\student angry face.png")
+            });
+
+            // 4. Teacher
+            customerPool.Add(new CustomerProfile
+            {
+                Name = "Teacher",
+                NormalImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\teacher normal face.png"),
+                AngryImage = TryLoadImage(@"C:\Users\Levin Gabutin\Downloads\teacher angry face.png")
+            });
+        }
+
+        private Image? TryLoadImage(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    {
+                        return Image.FromStream(stream);
+                    }
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        private void SpawnTimer_Tick(object? sender, EventArgs e)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                if (!slots[i].IsOccupied)
+                {
+                    SpawnCustomerInSlot(slots[i]);
+                    break;
+                }
+            }
+        }
+
+        private void SpawnCustomerInSlot(CustomerSlot slot)
+        {
+            slot.Profile = customerPool[rand.Next(customerPool.Count)];
+            slot.IsOccupied = true;
+            slot.IsArrived = false;
+            slot.IsLeaving = false;
+            slot.IsAngry = false;
+
+            slot.CurrentPatience = MaxPatienceSeconds;
+            slot.StepCount = 0;
+
+            slot.SpawnFromLeft = (rand.Next(0, 2) == 0);
+            slot.LeaveToRight = (rand.Next(0, 2) == 0);
+
+            slot.CurrentX = slot.SpawnFromLeft ? -180 : 1100;
+            slot.PicCustomer.Location = new Point((int)slot.CurrentX, 14);
+
+            if (slot.Profile.NormalImage != null)
+            {
+                slot.PicCustomer.Image = new Bitmap(slot.Profile.NormalImage, new Size(260, 255));
+            }
+
+            slot.PicCustomer.Visible = true;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
+            slot.PnlPatienceBar.Visible = false;
+
+            if (!walkTimer.Enabled)
+                walkTimer.Start();
+        }
+
+        private void Walktimer_Tick(object? sender, EventArgs e)
+        {
+            bool anyMoving = false;
+
+            for (int i = 0; i < 3; i++)
+            {
+                CustomerSlot slot = slots[i];
+                if (!slot.IsOccupied) continue;
+
+                if (!slot.IsLeaving)
+                {
+                    if (slot.SpawnFromLeft)
+                    {
+                        if (slot.CurrentX < slot.TargetX)
+                        {
+                            slot.CurrentX += customerSpeed;
+                            slot.StepCount++;
+                            int bob = (int)(Math.Sin(slot.StepCount * 0.28) * 2);
+                            slot.CurrentX = Math.Min(slot.CurrentX, slot.TargetX);
+
+                            slot.PicCustomer.Location = new Point((int)slot.CurrentX, 14 + bob);
+                            anyMoving = true;
+
+                            if (slot.CurrentX >= slot.TargetX)
+                            {
+                                slot.IsArrived = true;
+                                OnSlotArrivedAtCounter(slot);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (slot.CurrentX > slot.TargetX)
+                        {
+                            slot.CurrentX -= customerSpeed;
+                            slot.StepCount++;
+                            int bob = (int)(Math.Sin(slot.StepCount * 0.28) * 2);
+                            slot.CurrentX = Math.Max(slot.CurrentX, slot.TargetX);
+
+                            slot.PicCustomer.Location = new Point((int)slot.CurrentX, 14 + bob);
+                            anyMoving = true;
+
+                            if (slot.CurrentX <= slot.TargetX)
+                            {
+                                slot.IsArrived = true;
+                                OnSlotArrivedAtCounter(slot);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (slot.LeaveToRight)
+                    {
+                        slot.CurrentX += customerSpeed;
+                        slot.StepCount++;
+                        int bob = (int)(Math.Sin(slot.StepCount * 0.28) * 2);
+                        slot.PicCustomer.Location = new Point((int)slot.CurrentX, 14 + bob);
+                        anyMoving = true;
+
+                        if (slot.CurrentX >= 1100) ResetSlotState(slot);
+                    }
+                    else
+                    {
+                        slot.CurrentX -= customerSpeed;
+                        slot.StepCount++;
+                        int bob = (int)(Math.Sin(slot.StepCount * 0.28) * 2);
+                        slot.PicCustomer.Location = new Point((int)slot.CurrentX, 14 + bob);
+                        anyMoving = true;
+
+                        if (slot.CurrentX <= -220) ResetSlotState(slot);
+                    }
+                }
+            }
+
+            if (!anyMoving) walkTimer.Stop();
+        }
+
+        private void OnSlotArrivedAtCounter(CustomerSlot slot)
+        {
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = true;
+            slot.PnlPatienceBar.Visible = true;
+
+            if (!patienceTimer.Enabled)
+                patienceTimer.Start();
+        }
+
+        private void ResetSlotState(CustomerSlot slot)
+        {
+            slot.IsOccupied = false;
+            slot.IsArrived = false;
+            slot.IsLeaving = false;
+            slot.PicCustomer.Visible = false;
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
+            slot.PnlPatienceBar.Visible = false;
+        }
+
+        private void PatienceTimer_Tick(object? sender, EventArgs e)
+        {
+            bool anyArrived = false;
+
+            for (int i = 0; i < 3; i++)
+            {
+                CustomerSlot slot = slots[i];
+                if (!slot.IsOccupied || !slot.IsArrived || slot.IsLeaving) continue;
+
+                anyArrived = true;
+                slot.CurrentPatience = Math.Max(0, slot.CurrentPatience - 0.1f);
+                slot.PnlPatienceBar.Invalidate();
+
+                float ratio = slot.CurrentPatience / MaxPatienceSeconds;
+
+                // Magiging angry face kapag umabot na sa ibaba ng 25% ang patience
+                if (ratio < 0.25f && !slot.IsAngry)
+                {
+                    slot.IsAngry = true;
+                    if (slot.Profile?.AngryImage != null)
+                    {
+                        slot.PicCustomer.Image = new Bitmap(slot.Profile.AngryImage, new Size(260, 255));
+                    }
+                }
+
+                // Kapag umabot sa 0 ang patience = Walkout / Strike!
+                if (slot.CurrentPatience <= 0)
+                {
+                    HandleSlotWalkOut(slot);
+                }
+            }
+
+            if (!anyArrived) patienceTimer.Stop();
+        }
+
+        private void HandleSlotWalkOut(CustomerSlot slot)
+        {
+            if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
+            slot.PnlPatienceBar.Visible = false;
+
+            // Tawagin ang iyong 3-strike system dito
+            strikeCount++;
+            if (strikeCount == 1) pbCircle1.Image = Properties.Resources.red_x;
+            else if (strikeCount == 2) pbCircle2.Image = Properties.Resources.red_x;
+            else if (strikeCount >= 3)
+            {
+                pbCircle3.Image = Properties.Resources.red_x;
+                MessageBox.Show("GAME OVER! Umabot sa 3 ang strikes mo.", "Tapos na ang Laro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Ilagay ang game over exit o restart dito
+            }
+
+            slot.IsLeaving = true;
+            if (!walkTimer.Enabled) walkTimer.Start();
+        }
+
+        // --- VERIFICATION OF ORDER & POINTS ---
+        private void TryServeSlot(int slotIndex, string plateTag)
+        {
+            CustomerSlot slot = slots[slotIndex];
+            if (!slot.IsOccupied || !slot.IsArrived || slot.IsLeaving) return;
+
+            if (plateTag == currentOrder) // Tugma sa hiniling ng customer
+            {
+                if (slot.PnlBubble != null) slot.PnlBubble.Visible = false;
+                slot.PnlPatienceBar.Visible = false;
+
+                int earnedScore = (currentOrder == "tapsilog") ? 150 : (currentOrder == "pares" ? 120 : 100);
+                AddScore(earnedScore); // Tatawag sa AddScore method mo para mag-update at mag-check ng highscore
+
+                slot.IsLeaving = true;
+                if (!walkTimer.Enabled) walkTimer.Start();
+            }
+            else
+            {
+                MessageBox.Show("Maling order ang ibinigay mo sa customer na ito!", "Paalala", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+            
+
         // --- EGG SYSTEM VARIABLES (4s luto = green, 3s bago masunog = red) ---
         private int eggSecondsCount = 0;
         private string eggState = "EMPTY";

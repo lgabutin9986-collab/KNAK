@@ -61,6 +61,7 @@
             pbCircle1 = new PictureBox();
             pbCircle2 = new PictureBox();
             pbCircle3 = new PictureBox();
+            picCustomer = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -92,15 +93,17 @@
             ((System.ComponentModel.ISupportInitialize)pbCircle1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbCircle2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbCircle3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picCustomer).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(10, 9);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(84, 56);
+            pictureBox1.Size = new Size(74, 42);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -108,9 +111,10 @@
             // pictureBox2
             // 
             pictureBox2.BackColor = Color.FromArgb(128, 64, 0);
-            pictureBox2.Location = new Point(93, 12);
+            pictureBox2.Location = new Point(81, 9);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(131, 49);
+            pictureBox2.Size = new Size(115, 37);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             // 
@@ -120,18 +124,19 @@
             label1.BackColor = Color.FromArgb(128, 64, 64);
             label1.Font = new Font("Cooper Black", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(93, 12);
+            label1.Location = new Point(81, 9);
             label1.Name = "label1";
-            label1.Size = new Size(74, 17);
+            label1.Size = new Size(59, 14);
             label1.TabIndex = 2;
             label1.Text = "STRIKE:";
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.FromArgb(128, 64, 0);
-            pictureBox3.Location = new Point(638, 12);
+            pictureBox3.Location = new Point(558, 9);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(159, 49);
+            pictureBox3.Size = new Size(139, 37);
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
             // 
@@ -141,9 +146,9 @@
             lblHighscore.BackColor = Color.FromArgb(128, 64, 64);
             lblHighscore.Font = new Font("Cooper Black", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblHighscore.ForeColor = SystemColors.ControlLightLight;
-            lblHighscore.Location = new Point(638, 14);
+            lblHighscore.Location = new Point(558, 10);
             lblHighscore.Name = "lblHighscore";
-            lblHighscore.Size = new Size(95, 15);
+            lblHighscore.Size = new Size(75, 11);
             lblHighscore.TabIndex = 5;
             lblHighscore.Text = "HIGHSCORE: ";
             // 
@@ -153,18 +158,19 @@
             lblCurrentScore.BackColor = Color.FromArgb(128, 64, 64);
             lblCurrentScore.Font = new Font("Cooper Black", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblCurrentScore.ForeColor = SystemColors.ControlLightLight;
-            lblCurrentScore.Location = new Point(654, 35);
+            lblCurrentScore.Location = new Point(572, 26);
             lblCurrentScore.Name = "lblCurrentScore";
-            lblCurrentScore.Size = new Size(0, 15);
+            lblCurrentScore.Size = new Size(0, 13);
             lblCurrentScore.TabIndex = 6;
             // 
             // pbRiceCooker
             // 
             pbRiceCooker.BackColor = Color.Transparent;
             pbRiceCooker.Image = (Image)resources.GetObject("pbRiceCooker.Image");
-            pbRiceCooker.Location = new Point(1, 277);
+            pbRiceCooker.Location = new Point(1, 208);
+            pbRiceCooker.Margin = new Padding(3, 2, 3, 2);
             pbRiceCooker.Name = "pbRiceCooker";
-            pbRiceCooker.Size = new Size(139, 126);
+            pbRiceCooker.Size = new Size(122, 94);
             pbRiceCooker.SizeMode = PictureBoxSizeMode.Zoom;
             pbRiceCooker.TabIndex = 7;
             pbRiceCooker.TabStop = false;
@@ -176,9 +182,9 @@
             lblRiceStatus.BackColor = Color.Transparent;
             lblRiceStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRiceStatus.ForeColor = SystemColors.HighlightText;
-            lblRiceStatus.Location = new Point(18, 398);
+            lblRiceStatus.Location = new Point(16, 298);
             lblRiceStatus.Name = "lblRiceStatus";
-            lblRiceStatus.Size = new Size(99, 17);
+            lblRiceStatus.Size = new Size(78, 14);
             lblRiceStatus.TabIndex = 8;
             lblRiceStatus.Text = "Rice Cooker";
             // 
@@ -189,9 +195,10 @@
             // 
             // pbRiceProgress
             // 
-            pbRiceProgress.Location = new Point(12, 418);
+            pbRiceProgress.Location = new Point(10, 314);
+            pbRiceProgress.Margin = new Padding(3, 2, 3, 2);
             pbRiceProgress.Name = "pbRiceProgress";
-            pbRiceProgress.Size = new Size(115, 20);
+            pbRiceProgress.Size = new Size(101, 15);
             pbRiceProgress.TabIndex = 9;
             pbRiceProgress.Visible = false;
             // 
@@ -199,9 +206,10 @@
             // 
             pbTray.BackColor = Color.Transparent;
             pbTray.Image = (Image)resources.GetObject("pbTray.Image");
-            pbTray.Location = new Point(35, 209);
+            pbTray.Location = new Point(31, 157);
+            pbTray.Margin = new Padding(3, 2, 3, 2);
             pbTray.Name = "pbTray";
-            pbTray.Size = new Size(176, 80);
+            pbTray.Size = new Size(154, 60);
             pbTray.SizeMode = PictureBoxSizeMode.Zoom;
             pbTray.TabIndex = 10;
             pbTray.TabStop = false;
@@ -210,9 +218,10 @@
             // 
             pbTray2.BackColor = Color.Transparent;
             pbTray2.Image = (Image)resources.GetObject("pbTray2.Image");
-            pbTray2.Location = new Point(222, 209);
+            pbTray2.Location = new Point(194, 157);
+            pbTray2.Margin = new Padding(3, 2, 3, 2);
             pbTray2.Name = "pbTray2";
-            pbTray2.Size = new Size(176, 80);
+            pbTray2.Size = new Size(154, 60);
             pbTray2.SizeMode = PictureBoxSizeMode.Zoom;
             pbTray2.TabIndex = 11;
             pbTray2.TabStop = false;
@@ -221,9 +230,10 @@
             // 
             pbTray3.BackColor = Color.Transparent;
             pbTray3.Image = (Image)resources.GetObject("pbTray3.Image");
-            pbTray3.Location = new Point(412, 209);
+            pbTray3.Location = new Point(360, 157);
+            pbTray3.Margin = new Padding(3, 2, 3, 2);
             pbTray3.Name = "pbTray3";
-            pbTray3.Size = new Size(176, 80);
+            pbTray3.Size = new Size(154, 60);
             pbTray3.SizeMode = PictureBoxSizeMode.Zoom;
             pbTray3.TabIndex = 12;
             pbTray3.TabStop = false;
@@ -232,9 +242,10 @@
             // 
             pbPlate1.BackColor = Color.Silver;
             pbPlate1.Image = (Image)resources.GetObject("pbPlate1.Image");
-            pbPlate1.Location = new Point(59, 221);
+            pbPlate1.Location = new Point(52, 166);
+            pbPlate1.Margin = new Padding(3, 2, 3, 2);
             pbPlate1.Name = "pbPlate1";
-            pbPlate1.Size = new Size(55, 54);
+            pbPlate1.Size = new Size(48, 40);
             pbPlate1.SizeMode = PictureBoxSizeMode.Zoom;
             pbPlate1.TabIndex = 14;
             pbPlate1.TabStop = false;
@@ -244,9 +255,10 @@
             // 
             pbPlate2.BackColor = Color.Silver;
             pbPlate2.Image = (Image)resources.GetObject("pbPlate2.Image");
-            pbPlate2.Location = new Point(247, 221);
+            pbPlate2.Location = new Point(216, 166);
+            pbPlate2.Margin = new Padding(3, 2, 3, 2);
             pbPlate2.Name = "pbPlate2";
-            pbPlate2.Size = new Size(55, 54);
+            pbPlate2.Size = new Size(48, 40);
             pbPlate2.SizeMode = PictureBoxSizeMode.Zoom;
             pbPlate2.TabIndex = 15;
             pbPlate2.TabStop = false;
@@ -256,9 +268,10 @@
             // 
             pbPlate3.BackColor = Color.Silver;
             pbPlate3.Image = (Image)resources.GetObject("pbPlate3.Image");
-            pbPlate3.Location = new Point(439, 221);
+            pbPlate3.Location = new Point(384, 166);
+            pbPlate3.Margin = new Padding(3, 2, 3, 2);
             pbPlate3.Name = "pbPlate3";
-            pbPlate3.Size = new Size(55, 54);
+            pbPlate3.Size = new Size(48, 40);
             pbPlate3.SizeMode = PictureBoxSizeMode.Zoom;
             pbPlate3.TabIndex = 16;
             pbPlate3.TabStop = false;
@@ -268,9 +281,10 @@
             // 
             pictureBox4.BackColor = Color.Transparent;
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(123, 304);
+            pictureBox4.Location = new Point(108, 228);
+            pictureBox4.Margin = new Padding(3, 2, 3, 2);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(230, 134);
+            pictureBox4.Size = new Size(201, 100);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox4.TabIndex = 18;
             pictureBox4.TabStop = false;
@@ -279,9 +293,10 @@
             // 
             pictureBox5.BackColor = Color.Transparent;
             pictureBox5.Image = Properties.Resources.fullgulaman;
-            pictureBox5.Location = new Point(680, 291);
+            pictureBox5.Location = new Point(595, 218);
+            pictureBox5.Margin = new Padding(3, 2, 3, 2);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(103, 143);
+            pictureBox5.Size = new Size(90, 107);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 19;
             pictureBox5.TabStop = false;
@@ -291,9 +306,10 @@
             // 
             pictureBox6.BackColor = Color.Transparent;
             pictureBox6.Image = Properties.Resources.fryer;
-            pictureBox6.Location = new Point(493, 304);
+            pictureBox6.Location = new Point(431, 228);
+            pictureBox6.Margin = new Padding(3, 2, 3, 2);
             pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(139, 126);
+            pictureBox6.Size = new Size(122, 94);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox6.TabIndex = 20;
             pictureBox6.TabStop = false;
@@ -302,9 +318,10 @@
             // 
             rawegg.BackColor = Color.Transparent;
             rawegg.Image = Properties.Resources.rawegg;
-            rawegg.Location = new Point(616, 318);
+            rawegg.Location = new Point(539, 238);
+            rawegg.Margin = new Padding(3, 2, 3, 2);
             rawegg.Name = "rawegg";
-            rawegg.Size = new Size(58, 53);
+            rawegg.Size = new Size(51, 40);
             rawegg.SizeMode = PictureBoxSizeMode.Zoom;
             rawegg.TabIndex = 21;
             rawegg.TabStop = false;
@@ -313,9 +330,10 @@
             // 
             coatedegg.BackColor = Color.Transparent;
             coatedegg.Image = Properties.Resources.stiregg;
-            coatedegg.Location = new Point(616, 372);
+            coatedegg.Location = new Point(539, 279);
+            coatedegg.Margin = new Padding(3, 2, 3, 2);
             coatedegg.Name = "coatedegg";
-            coatedegg.Size = new Size(58, 53);
+            coatedegg.Size = new Size(51, 40);
             coatedegg.SizeMode = PictureBoxSizeMode.Zoom;
             coatedegg.TabIndex = 22;
             coatedegg.TabStop = false;
@@ -324,9 +342,10 @@
             // 
             basogulaman1.BackColor = Color.Transparent;
             basogulaman1.Image = Properties.Resources.gulaman_removebg_preview;
-            basogulaman1.Location = new Point(668, 209);
+            basogulaman1.Location = new Point(584, 157);
+            basogulaman1.Margin = new Padding(3, 2, 3, 2);
             basogulaman1.Name = "basogulaman1";
-            basogulaman1.Size = new Size(41, 81);
+            basogulaman1.Size = new Size(36, 61);
             basogulaman1.SizeMode = PictureBoxSizeMode.Zoom;
             basogulaman1.TabIndex = 25;
             basogulaman1.TabStop = false;
@@ -336,9 +355,10 @@
             // 
             basogulaman2.BackColor = Color.Transparent;
             basogulaman2.Image = Properties.Resources.gulaman_removebg_preview;
-            basogulaman2.Location = new Point(709, 209);
+            basogulaman2.Location = new Point(620, 157);
+            basogulaman2.Margin = new Padding(3, 2, 3, 2);
             basogulaman2.Name = "basogulaman2";
-            basogulaman2.Size = new Size(41, 81);
+            basogulaman2.Size = new Size(36, 61);
             basogulaman2.SizeMode = PictureBoxSizeMode.Zoom;
             basogulaman2.TabIndex = 24;
             basogulaman2.TabStop = false;
@@ -348,9 +368,10 @@
             // 
             basogulaman3.BackColor = Color.Transparent;
             basogulaman3.Image = Properties.Resources.gulaman_removebg_preview;
-            basogulaman3.Location = new Point(747, 208);
+            basogulaman3.Location = new Point(654, 156);
+            basogulaman3.Margin = new Padding(3, 2, 3, 2);
             basogulaman3.Name = "basogulaman3";
-            basogulaman3.Size = new Size(41, 81);
+            basogulaman3.Size = new Size(36, 61);
             basogulaman3.SizeMode = PictureBoxSizeMode.Zoom;
             basogulaman3.TabIndex = 23;
             basogulaman3.TabStop = false;
@@ -360,9 +381,10 @@
             // 
             kwek1.BackColor = Color.Transparent;
             kwek1.Image = Properties.Resources.ready_to_serve_kwekkwek_removebg_preview;
-            kwek1.Location = new Point(594, 214);
+            kwek1.Location = new Point(520, 160);
+            kwek1.Margin = new Padding(3, 2, 3, 2);
             kwek1.Name = "kwek1";
-            kwek1.Size = new Size(37, 75);
+            kwek1.Size = new Size(32, 56);
             kwek1.SizeMode = PictureBoxSizeMode.Zoom;
             kwek1.TabIndex = 26;
             kwek1.TabStop = false;
@@ -371,9 +393,10 @@
             // 
             kwek2.BackColor = Color.Transparent;
             kwek2.Image = Properties.Resources.ready_to_serve_kwekkwek_removebg_preview;
-            kwek2.Location = new Point(634, 214);
+            kwek2.Location = new Point(555, 160);
+            kwek2.Margin = new Padding(3, 2, 3, 2);
             kwek2.Name = "kwek2";
-            kwek2.Size = new Size(37, 75);
+            kwek2.Size = new Size(32, 56);
             kwek2.SizeMode = PictureBoxSizeMode.Zoom;
             kwek2.TabIndex = 27;
             kwek2.TabStop = false;
@@ -382,9 +405,10 @@
             // 
             bowlegg.BackColor = Color.Transparent;
             bowlegg.Image = Properties.Resources.rawegg;
-            bowlegg.Location = new Point(348, 318);
+            bowlegg.Location = new Point(304, 238);
+            bowlegg.Margin = new Padding(3, 2, 3, 2);
             bowlegg.Name = "bowlegg";
-            bowlegg.Size = new Size(58, 53);
+            bowlegg.Size = new Size(51, 40);
             bowlegg.SizeMode = PictureBoxSizeMode.Zoom;
             bowlegg.TabIndex = 28;
             bowlegg.TabStop = false;
@@ -393,9 +417,10 @@
             // 
             bowltapa.BackColor = Color.Transparent;
             bowltapa.Image = Properties.Resources.bowltapa;
-            bowltapa.Location = new Point(349, 366);
+            bowltapa.Location = new Point(305, 274);
+            bowltapa.Margin = new Padding(3, 2, 3, 2);
             bowltapa.Name = "bowltapa";
-            bowltapa.Size = new Size(58, 53);
+            bowltapa.Size = new Size(51, 40);
             bowltapa.SizeMode = PictureBoxSizeMode.Zoom;
             bowltapa.TabIndex = 29;
             bowltapa.TabStop = false;
@@ -404,9 +429,10 @@
             // 
             parespot.BackColor = Color.Transparent;
             parespot.Image = Properties.Resources.parespot;
-            parespot.Location = new Point(410, 304);
+            parespot.Location = new Point(359, 228);
+            parespot.Margin = new Padding(3, 2, 3, 2);
             parespot.Name = "parespot";
-            parespot.Size = new Size(100, 126);
+            parespot.Size = new Size(88, 94);
             parespot.SizeMode = PictureBoxSizeMode.Zoom;
             parespot.TabIndex = 30;
             parespot.TabStop = false;
@@ -415,9 +441,10 @@
             // 
             pares1.BackColor = Color.Silver;
             pares1.Image = Properties.Resources.pares;
-            pares1.Location = new Point(120, 221);
+            pares1.Location = new Point(105, 166);
+            pares1.Margin = new Padding(3, 2, 3, 2);
             pares1.Name = "pares1";
-            pares1.Size = new Size(55, 54);
+            pares1.Size = new Size(48, 40);
             pares1.SizeMode = PictureBoxSizeMode.Zoom;
             pares1.TabIndex = 31;
             pares1.TabStop = false;
@@ -427,9 +454,10 @@
             // 
             pares2.BackColor = Color.Silver;
             pares2.Image = Properties.Resources.pares;
-            pares2.Location = new Point(308, 221);
+            pares2.Location = new Point(270, 166);
+            pares2.Margin = new Padding(3, 2, 3, 2);
             pares2.Name = "pares2";
-            pares2.Size = new Size(55, 54);
+            pares2.Size = new Size(48, 40);
             pares2.SizeMode = PictureBoxSizeMode.Zoom;
             pares2.TabIndex = 32;
             pares2.TabStop = false;
@@ -439,9 +467,10 @@
             // 
             pares3.BackColor = Color.Silver;
             pares3.Image = Properties.Resources.pares;
-            pares3.Location = new Point(500, 221);
+            pares3.Location = new Point(438, 166);
+            pares3.Margin = new Padding(3, 2, 3, 2);
             pares3.Name = "pares3";
-            pares3.Size = new Size(55, 54);
+            pares3.Size = new Size(48, 40);
             pares3.SizeMode = PictureBoxSizeMode.Zoom;
             pares3.TabIndex = 33;
             pares3.TabStop = false;
@@ -451,9 +480,10 @@
             // 
             uncookedegg.BackColor = Color.Goldenrod;
             uncookedegg.Image = Properties.Resources.uncookedegg;
-            uncookedegg.Location = new Point(168, 333);
+            uncookedegg.Location = new Point(147, 250);
+            uncookedegg.Margin = new Padding(3, 2, 3, 2);
             uncookedegg.Name = "uncookedegg";
-            uncookedegg.Size = new Size(35, 34);
+            uncookedegg.Size = new Size(31, 26);
             uncookedegg.SizeMode = PictureBoxSizeMode.Zoom;
             uncookedegg.TabIndex = 34;
             uncookedegg.TabStop = false;
@@ -462,9 +492,10 @@
             // 
             rawtapa.BackColor = Color.Goldenrod;
             rawtapa.Image = Properties.Resources.rawtapa;
-            rawtapa.Location = new Point(274, 333);
+            rawtapa.Location = new Point(240, 250);
+            rawtapa.Margin = new Padding(3, 2, 3, 2);
             rawtapa.Name = "rawtapa";
-            rawtapa.Size = new Size(35, 34);
+            rawtapa.Size = new Size(31, 26);
             rawtapa.SizeMode = PictureBoxSizeMode.Zoom;
             rawtapa.TabIndex = 35;
             rawtapa.TabStop = false;
@@ -475,9 +506,9 @@
             lblEggStatus.BackColor = Color.Transparent;
             lblEggStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEggStatus.ForeColor = SystemColors.HighlightText;
-            lblEggStatus.Location = new Point(147, 417);
+            lblEggStatus.Location = new Point(129, 313);
             lblEggStatus.Name = "lblEggStatus";
-            lblEggStatus.Size = new Size(78, 17);
+            lblEggStatus.Size = new Size(64, 14);
             lblEggStatus.TabIndex = 36;
             lblEggStatus.Text = "Fried Egg";
             // 
@@ -487,9 +518,9 @@
             lblTapaStatus.BackColor = Color.Transparent;
             lblTapaStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTapaStatus.ForeColor = SystemColors.HighlightText;
-            lblTapaStatus.Location = new Point(265, 418);
+            lblTapaStatus.Location = new Point(232, 314);
             lblTapaStatus.Name = "lblTapaStatus";
-            lblTapaStatus.Size = new Size(44, 17);
+            lblTapaStatus.Size = new Size(37, 14);
             lblTapaStatus.TabIndex = 37;
             lblTapaStatus.Text = "Tapa";
             // 
@@ -499,9 +530,9 @@
             lblParesStatus.BackColor = Color.Transparent;
             lblParesStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblParesStatus.ForeColor = SystemColors.HighlightText;
-            lblParesStatus.Location = new Point(417, 417);
+            lblParesStatus.Location = new Point(365, 313);
             lblParesStatus.Name = "lblParesStatus";
-            lblParesStatus.Size = new Size(51, 17);
+            lblParesStatus.Size = new Size(41, 14);
             lblParesStatus.TabIndex = 38;
             lblParesStatus.Text = "Pares";
             // 
@@ -511,9 +542,9 @@
             lblKwekStatus.BackColor = Color.Transparent;
             lblKwekStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblKwekStatus.ForeColor = SystemColors.HighlightText;
-            lblKwekStatus.Location = new Point(518, 421);
+            lblKwekStatus.Location = new Point(453, 316);
             lblKwekStatus.Name = "lblKwekStatus";
-            lblKwekStatus.Size = new Size(95, 17);
+            lblKwekStatus.Size = new Size(77, 14);
             lblKwekStatus.TabIndex = 39;
             lblKwekStatus.Text = "Kwek-Kwek";
             // 
@@ -523,9 +554,9 @@
             lblGulamanStatus.BackColor = Color.Transparent;
             lblGulamanStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblGulamanStatus.ForeColor = SystemColors.HighlightText;
-            lblGulamanStatus.Location = new Point(684, 424);
+            lblGulamanStatus.Location = new Point(598, 318);
             lblGulamanStatus.Name = "lblGulamanStatus";
-            lblGulamanStatus.Size = new Size(73, 17);
+            lblGulamanStatus.Size = new Size(59, 14);
             lblGulamanStatus.TabIndex = 40;
             lblGulamanStatus.Text = "Gulaman";
             // 
@@ -533,9 +564,10 @@
             // 
             pbCircle1.BackColor = Color.FromArgb(128, 64, 0);
             pbCircle1.Image = Properties.Resources.strike_o;
-            pbCircle1.Location = new Point(104, 30);
+            pbCircle1.Location = new Point(91, 22);
+            pbCircle1.Margin = new Padding(3, 2, 3, 2);
             pbCircle1.Name = "pbCircle1";
-            pbCircle1.Size = new Size(33, 26);
+            pbCircle1.Size = new Size(29, 20);
             pbCircle1.SizeMode = PictureBoxSizeMode.Zoom;
             pbCircle1.TabIndex = 41;
             pbCircle1.TabStop = false;
@@ -544,9 +576,10 @@
             // 
             pbCircle2.BackColor = Color.FromArgb(128, 64, 0);
             pbCircle2.Image = Properties.Resources.strike_o;
-            pbCircle2.Location = new Point(142, 30);
+            pbCircle2.Location = new Point(124, 22);
+            pbCircle2.Margin = new Padding(3, 2, 3, 2);
             pbCircle2.Name = "pbCircle2";
-            pbCircle2.Size = new Size(33, 26);
+            pbCircle2.Size = new Size(29, 20);
             pbCircle2.SizeMode = PictureBoxSizeMode.Zoom;
             pbCircle2.TabIndex = 42;
             pbCircle2.TabStop = false;
@@ -555,20 +588,33 @@
             // 
             pbCircle3.BackColor = Color.FromArgb(128, 64, 0);
             pbCircle3.Image = Properties.Resources.strike_o;
-            pbCircle3.Location = new Point(181, 30);
+            pbCircle3.Location = new Point(158, 22);
+            pbCircle3.Margin = new Padding(3, 2, 3, 2);
             pbCircle3.Name = "pbCircle3";
-            pbCircle3.Size = new Size(33, 26);
+            pbCircle3.Size = new Size(29, 20);
             pbCircle3.SizeMode = PictureBoxSizeMode.Zoom;
             pbCircle3.TabIndex = 43;
             pbCircle3.TabStop = false;
             // 
+            // picCustomer
+            // 
+            picCustomer.BackColor = Color.Transparent;
+            picCustomer.Image = Properties.Resources.worker_normal_face_removebg_preview;
+            picCustomer.Location = new Point(417, 8);
+            picCustomer.Name = "picCustomer";
+            picCustomer.Size = new Size(97, 152);
+            picCustomer.SizeMode = PictureBoxSizeMode.Zoom;
+            picCustomer.TabIndex = 44;
+            picCustomer.TabStop = false;
+            // 
             // ENDLESS
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(700, 338);
+            Controls.Add(picCustomer);
             Controls.Add(pbCircle3);
             Controls.Add(pbCircle2);
             Controls.Add(pbCircle1);
@@ -611,6 +657,7 @@
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             DoubleBuffered = true;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "ENDLESS";
             Text = "ENDLESS";
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -644,6 +691,7 @@
             ((System.ComponentModel.ISupportInitialize)pbCircle1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbCircle2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbCircle3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picCustomer).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -692,5 +740,6 @@
         private PictureBox pbCircle1;
         private PictureBox pbCircle2;
         private PictureBox pbCircle3;
+        private PictureBox picCustomer;
     }
 }
