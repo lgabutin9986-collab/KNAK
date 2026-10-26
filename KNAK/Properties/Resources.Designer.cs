@@ -143,6 +143,26 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap mother_angry_face {
+            get {
+                object obj = ResourceManager.GetObject("mother angry face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap mother_normal_face {
+            get {
+                object obj = ResourceManager.GetObject("mother normal face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pares_pot {
             get {
                 object obj = ResourceManager.GetObject("pares pot", resourceCulture);
@@ -233,9 +253,49 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap student_angry_face {
+            get {
+                object obj = ResourceManager.GetObject("student angry face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap student_normal_face {
+            get {
+                object obj = ResourceManager.GetObject("student normal face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tapsilog {
             get {
                 object obj = ResourceManager.GetObject("tapsilog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teacher_angry_face {
+            get {
+                object obj = ResourceManager.GetObject("teacher angry face", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teacher_normal_face {
+            get {
+                object obj = ResourceManager.GetObject("teacher normal face", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +316,16 @@ namespace KNAK.Properties {
         internal static System.Drawing.Bitmap tuts_button {
             get {
                 object obj = ResourceManager.GetObject("tuts button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap worker_angry_face {
+            get {
+                object obj = ResourceManager.GetObject("worker angry face", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
