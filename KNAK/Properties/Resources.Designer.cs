@@ -333,6 +333,16 @@ namespace KNAK.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap red_x {
+            get {
+                object obj = ResourceManager.GetObject("red_x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap rice_cooker_empty {
             get {
                 object obj = ResourceManager.GetObject("rice_cooker_empty", resourceCulture);
@@ -386,6 +396,16 @@ namespace KNAK.Properties {
         internal static System.Drawing.Bitmap story_mode_buttom_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("story_mode_buttom-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap strike_o {
+            get {
+                object obj = ResourceManager.GetObject("strike_o", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

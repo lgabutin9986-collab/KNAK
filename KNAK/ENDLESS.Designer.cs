@@ -22,8 +22,6 @@
             pictureBox1 = new PictureBox();
             pictureBox2 = new PictureBox();
             label1 = new Label();
-            lblTimeElapsed = new Label();
-            timer1 = new System.Windows.Forms.Timer(components);
             pictureBox3 = new PictureBox();
             lblHighscore = new Label();
             lblCurrentScore = new Label();
@@ -55,6 +53,14 @@
             pares3 = new PictureBox();
             uncookedegg = new PictureBox();
             rawtapa = new PictureBox();
+            lblEggStatus = new Label();
+            lblTapaStatus = new Label();
+            lblParesStatus = new Label();
+            lblKwekStatus = new Label();
+            lblGulamanStatus = new Label();
+            pbCircle1 = new PictureBox();
+            pbCircle2 = new PictureBox();
+            pbCircle3 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
@@ -83,6 +89,9 @@
             ((System.ComponentModel.ISupportInitialize)pares3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)uncookedegg).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rawtapa).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle3).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -111,29 +120,11 @@
             label1.BackColor = Color.FromArgb(128, 64, 64);
             label1.Font = new Font("Cooper Black", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(93, 14);
+            label1.Location = new Point(93, 12);
             label1.Name = "label1";
-            label1.Size = new Size(131, 17);
+            label1.Size = new Size(74, 17);
             label1.TabIndex = 2;
-            label1.Text = "TIME ELAPSED:";
-            // 
-            // lblTimeElapsed
-            // 
-            lblTimeElapsed.AutoSize = true;
-            lblTimeElapsed.BackColor = Color.FromArgb(128, 64, 0);
-            lblTimeElapsed.Font = new Font("Cooper Black", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTimeElapsed.ForeColor = SystemColors.ControlLightLight;
-            lblTimeElapsed.Location = new Point(103, 36);
-            lblTimeElapsed.Name = "lblTimeElapsed";
-            lblTimeElapsed.Size = new Size(0, 17);
-            lblTimeElapsed.TabIndex = 3;
-            lblTimeElapsed.Click += label2_Click;
-            // 
-            // timer1
-            // 
-            timer1.Enabled = true;
-            timer1.Interval = 1000;
-            timer1.Tick += timer1_Tick;
+            label1.Text = "STRIKE:";
             // 
             // pictureBox3
             // 
@@ -185,11 +176,11 @@
             lblRiceStatus.BackColor = Color.Transparent;
             lblRiceStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblRiceStatus.ForeColor = SystemColors.HighlightText;
-            lblRiceStatus.Location = new Point(40, 399);
+            lblRiceStatus.Location = new Point(18, 398);
             lblRiceStatus.Name = "lblRiceStatus";
-            lblRiceStatus.Size = new Size(65, 17);
+            lblRiceStatus.Size = new Size(99, 17);
             lblRiceStatus.TabIndex = 8;
-            lblRiceStatus.Text = "Magluto";
+            lblRiceStatus.Text = "Rice Cooker";
             // 
             // timerRice
             // 
@@ -202,6 +193,7 @@
             pbRiceProgress.Name = "pbRiceProgress";
             pbRiceProgress.Size = new Size(115, 20);
             pbRiceProgress.TabIndex = 9;
+            pbRiceProgress.Visible = false;
             // 
             // pbTray
             // 
@@ -477,6 +469,99 @@
             rawtapa.TabIndex = 35;
             rawtapa.TabStop = false;
             // 
+            // lblEggStatus
+            // 
+            lblEggStatus.AutoSize = true;
+            lblEggStatus.BackColor = Color.Transparent;
+            lblEggStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEggStatus.ForeColor = SystemColors.HighlightText;
+            lblEggStatus.Location = new Point(147, 417);
+            lblEggStatus.Name = "lblEggStatus";
+            lblEggStatus.Size = new Size(78, 17);
+            lblEggStatus.TabIndex = 36;
+            lblEggStatus.Text = "Fried Egg";
+            // 
+            // lblTapaStatus
+            // 
+            lblTapaStatus.AutoSize = true;
+            lblTapaStatus.BackColor = Color.Transparent;
+            lblTapaStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTapaStatus.ForeColor = SystemColors.HighlightText;
+            lblTapaStatus.Location = new Point(265, 418);
+            lblTapaStatus.Name = "lblTapaStatus";
+            lblTapaStatus.Size = new Size(44, 17);
+            lblTapaStatus.TabIndex = 37;
+            lblTapaStatus.Text = "Tapa";
+            // 
+            // lblParesStatus
+            // 
+            lblParesStatus.AutoSize = true;
+            lblParesStatus.BackColor = Color.Transparent;
+            lblParesStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblParesStatus.ForeColor = SystemColors.HighlightText;
+            lblParesStatus.Location = new Point(417, 417);
+            lblParesStatus.Name = "lblParesStatus";
+            lblParesStatus.Size = new Size(51, 17);
+            lblParesStatus.TabIndex = 38;
+            lblParesStatus.Text = "Pares";
+            // 
+            // lblKwekStatus
+            // 
+            lblKwekStatus.AutoSize = true;
+            lblKwekStatus.BackColor = Color.Transparent;
+            lblKwekStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblKwekStatus.ForeColor = SystemColors.HighlightText;
+            lblKwekStatus.Location = new Point(518, 421);
+            lblKwekStatus.Name = "lblKwekStatus";
+            lblKwekStatus.Size = new Size(95, 17);
+            lblKwekStatus.TabIndex = 39;
+            lblKwekStatus.Text = "Kwek-Kwek";
+            // 
+            // lblGulamanStatus
+            // 
+            lblGulamanStatus.AutoSize = true;
+            lblGulamanStatus.BackColor = Color.Transparent;
+            lblGulamanStatus.Font = new Font("Arial Rounded MT Bold", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblGulamanStatus.ForeColor = SystemColors.HighlightText;
+            lblGulamanStatus.Location = new Point(684, 424);
+            lblGulamanStatus.Name = "lblGulamanStatus";
+            lblGulamanStatus.Size = new Size(73, 17);
+            lblGulamanStatus.TabIndex = 40;
+            lblGulamanStatus.Text = "Gulaman";
+            // 
+            // pbCircle1
+            // 
+            pbCircle1.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle1.Image = Properties.Resources.strike_o;
+            pbCircle1.Location = new Point(104, 30);
+            pbCircle1.Name = "pbCircle1";
+            pbCircle1.Size = new Size(33, 26);
+            pbCircle1.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle1.TabIndex = 41;
+            pbCircle1.TabStop = false;
+            // 
+            // pbCircle2
+            // 
+            pbCircle2.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle2.Image = Properties.Resources.strike_o;
+            pbCircle2.Location = new Point(142, 30);
+            pbCircle2.Name = "pbCircle2";
+            pbCircle2.Size = new Size(33, 26);
+            pbCircle2.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle2.TabIndex = 42;
+            pbCircle2.TabStop = false;
+            // 
+            // pbCircle3
+            // 
+            pbCircle3.BackColor = Color.FromArgb(128, 64, 0);
+            pbCircle3.Image = Properties.Resources.strike_o;
+            pbCircle3.Location = new Point(181, 30);
+            pbCircle3.Name = "pbCircle3";
+            pbCircle3.Size = new Size(33, 26);
+            pbCircle3.SizeMode = PictureBoxSizeMode.Zoom;
+            pbCircle3.TabIndex = 43;
+            pbCircle3.TabStop = false;
+            // 
             // ENDLESS
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -484,6 +569,14 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(pbCircle3);
+            Controls.Add(pbCircle2);
+            Controls.Add(pbCircle1);
+            Controls.Add(lblGulamanStatus);
+            Controls.Add(lblKwekStatus);
+            Controls.Add(lblParesStatus);
+            Controls.Add(lblTapaStatus);
+            Controls.Add(lblEggStatus);
             Controls.Add(rawtapa);
             Controls.Add(uncookedegg);
             Controls.Add(pares3);
@@ -514,7 +607,6 @@
             Controls.Add(lblCurrentScore);
             Controls.Add(lblHighscore);
             Controls.Add(pictureBox3);
-            Controls.Add(lblTimeElapsed);
             Controls.Add(label1);
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
@@ -549,6 +641,9 @@
             ((System.ComponentModel.ISupportInitialize)pares3).EndInit();
             ((System.ComponentModel.ISupportInitialize)uncookedegg).EndInit();
             ((System.ComponentModel.ISupportInitialize)rawtapa).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbCircle3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -558,8 +653,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private Label label1;
-        private Label lblTimeElapsed;
-        private System.Windows.Forms.Timer timer1;
         private PictureBox pictureBox3;
         private Label lblHighscore;
         private Label lblCurrentScore;
@@ -591,5 +684,13 @@
         private PictureBox pares3;
         private PictureBox uncookedegg;
         private PictureBox rawtapa;
+        private Label lblEggStatus;
+        private Label lblTapaStatus;
+        private Label lblParesStatus;
+        private Label lblKwekStatus;
+        private Label lblGulamanStatus;
+        private PictureBox pbCircle1;
+        private PictureBox pbCircle2;
+        private PictureBox pbCircle3;
     }
 }

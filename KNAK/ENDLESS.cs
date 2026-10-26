@@ -17,8 +17,9 @@ namespace KNAK
         private const int PBST_NORMAL = 1; // Green
         private const int PBST_ERROR = 2;  // Red
 
-        private int currentScore = 0;
-        private int totalSeconds = 0;
+        int currentScore = 0;
+        int highScore = 0; // O kung ano man ang nakalagay sa high score mo
+        int strikeCount = 0;
 
         // Rice Cooker Status Variables (3 servings, 6 seconds refill)
         private int riceServingsLeft = 3;
@@ -199,14 +200,6 @@ namespace KNAK
             pbRiceProgress.Visible = false;
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            totalSeconds++;
-            int minutes = totalSeconds / 60;
-            int seconds = totalSeconds % 60;
-            lblTimeElapsed.Text = minutes.ToString("D2") + ":" + seconds.ToString("D2");
-        }
-
         // --- RICE COOKER LOGIC ---
         private void pbRiceCooker_Click(object sender, EventArgs e)
         {
@@ -253,19 +246,21 @@ namespace KNAK
         {
             if (gulamanServingsLeft > 0 && !isRefilling)
             {
-                if (!basogulaman1.Visible) { gulamanServingsLeft--; basogulaman1.BackColor = Color.Transparent; basogulaman1.Image = Properties.Resources.gulaman_removebg_preview; basogulaman1.Visible = true; basogulaman1.BringToFront(); }
-                else if (!basogulaman2.Visible) { gulamanServingsLeft--; basogulaman2.BackColor = Color.Transparent; basogulaman2.Image = Properties.Resources.gulaman_removebg_preview; basogulaman2.Visible = true; basogulaman2.BringToFront(); }
-                else if (!basogulaman3.Visible) { gulamanServingsLeft--; basogulaman3.BackColor = Color.Transparent; basogulaman3.Image = Properties.Resources.gulaman_removebg_preview; basogulaman3.Visible = true; basogulaman3.BringToFront(); }
+                if (!basogulaman1.Visible) { gulamanServingsLeft--; basogulaman1.BackColor = Color.Transparent; basogulaman1.Image = Properties.Resources.gulaman_removebg_preview; basogulaman1.Visible = true; basogulaman1.BringToFront(); lblGulamanStatus.Text = gulamanServingsLeft + "/2 cups"; }
+                else if (!basogulaman2.Visible) { gulamanServingsLeft--; basogulaman2.BackColor = Color.Transparent; basogulaman2.Image = Properties.Resources.gulaman_removebg_preview; basogulaman2.Visible = true; basogulaman2.BringToFront(); lblGulamanStatus.Text = gulamanServingsLeft + "/2 cups"; }
+                else if (!basogulaman3.Visible) { gulamanServingsLeft--; basogulaman3.BackColor = Color.Transparent; basogulaman3.Image = Properties.Resources.gulaman_removebg_preview; basogulaman3.Visible = true; basogulaman3.BringToFront(); lblGulamanStatus.Text = gulamanServingsLeft + "/2 cups"; }
                 else { MessageBox.Show("Puno na ang lahat ng baso sa table!", "Paalala", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
                 if (gulamanServingsLeft <= 0)
                 {
                     pictureBox5.Image = Properties.Resources.emptygulaman;
+                    lblGulamanStatus.Text = "Click to refill!";
                 }
             }
             else if (gulamanServingsLeft <= 0 && !isRefilling)
             {
                 isRefilling = true;
+                lblGulamanStatus.Text = "Refilling...";
                 refillProgressValue = 0;
                 pbRefill.Value = 0;
                 SetProgressBarColor(pbRefill, PBST_NORMAL);
@@ -290,6 +285,7 @@ namespace KNAK
                 gulamanServingsLeft = 2;
                 pictureBox5.Image = Properties.Resources.fullgulaman;
                 pbRefill.Visible = false;
+                lblGulamanStatus.Text = gulamanServingsLeft + "/2 cups";
             }
         }
 
@@ -352,6 +348,7 @@ namespace KNAK
             fryerPhaseSeconds++;
 
             if (currentFryerState == FryerState.Cooking)
+
             {
                 fryerProgressValue += 20;
                 if (fryerProgressValue > 100) fryerProgressValue = 100;
@@ -362,6 +359,7 @@ namespace KNAK
                 {
                     currentFryerState = FryerState.Cooked;
                     pictureBox6.Image = Properties.Resources.cookedkwek2;
+                    lblKwekStatus.Text = "Cooking..";
                     fryerPhaseSeconds = 0;
                     fryerProgressValue = 0;
                     SetProgressBarColor(pbFryer, PBST_NORMAL);
@@ -371,17 +369,20 @@ namespace KNAK
             {
                 fryerProgressValue += 20;
                 if (fryerProgressValue > 100) fryerProgressValue = 100;
+                lblKwekStatus.Text = "Cooked!";
 
                 pbFryer.Value = (int)fryerProgressValue;
 
                 if (fryerPhaseSeconds >= 3)
                 {
                     SetProgressBarColor(pbFryer, PBST_ERROR);
+                
                 }
 
                 if (fryerPhaseSeconds >= 5)
                 {
                     currentFryerState = FryerState.Overcooked;
+                    lblKwekStatus.Text = "Burned!";
                     pictureBox6.Image = Properties.Resources.overcookedkwek2;
                     timerFryer.Stop();
                 }
@@ -458,6 +459,8 @@ namespace KNAK
             {
                 // Yugto 1: Paluto pa lang (Green) - 4 seconds (25% bawat segundo)
                 eggState = "COOKING";
+                lblEggStatus.Text = "Cooking...";
+
                 uncookedegg.Image = Properties.Resources.uncookedegg;
                 eggProgressValue = eggSecondsCount * 25;
                 if (eggProgressValue > 100) eggProgressValue = 100;
@@ -468,10 +471,12 @@ namespace KNAK
             {
                 // Yugto 2: Luto na pero nag-aabang ma-overcook (Red) - 3 seconds
                 eggState = "COOKED";
+                lblEggStatus.Text = "Cooked";
                 uncookedegg.Image = Properties.Resources.cookedegg;
 
                 // Muling ibaba sa 0 para mag-reboot o umakyat ang red progress bar habang naghihintay masunog
                 double redProgress = (eggSecondsCount - 4) * 33.3;
+                lblEggStatus.Text = "Cooked!";
                 if (redProgress > 100) redProgress = 100;
                 pbEggProgress.Value = (int)redProgress;
                 SetProgressBarColor(pbEggProgress, PBST_ERROR); // Kulay Red (Pa-overcook na)
@@ -480,6 +485,7 @@ namespace KNAK
             {
                 // Sunog na
                 eggState = "BURNED";
+                lblEggStatus.Text = "Burned!";
                 timerEgg.Stop();
                 uncookedegg.Image = Properties.Resources.burnedegg;
                 SetProgressBarColor(pbEggProgress, PBST_ERROR);
@@ -521,6 +527,7 @@ namespace KNAK
             {
                 // Yugto 1: Paluto pa lang (Green) - 5 seconds (20% bawat segundo)
                 tapaState = "COOKING";
+                lblTapaStatus.Text = "Cooking...";
                 rawtapa.Image = Properties.Resources.rawtapa;
                 tapaProgressValue = tapaSecondsCount * 20;
                 if (tapaProgressValue > 100) tapaProgressValue = 100;
@@ -531,17 +538,20 @@ namespace KNAK
             {
                 // Yugto 2: Luto na pero nag-aabang ma-overcook (Red) - 3 seconds
                 tapaState = "COOKED";
+                lblTapaStatus.Text = "Cooked!";
                 rawtapa.Image = Properties.Resources.cookedtapa;
 
                 double redProgress = (tapaSecondsCount - 5) * 33.3;
                 if (redProgress > 100) redProgress = 100;
                 pbTapaProgress.Value = (int)redProgress;
+                lblTapaStatus.Text = "Cooked!";
                 SetProgressBarColor(pbTapaProgress, PBST_ERROR); // Kulay Red (Pa-overcook na)
             }
             else if (tapaSecondsCount > 8)
             {
                 // Sunog na
                 tapaState = "BURNED";
+                lblTapaStatus.Text = "Burned!";
                 timerTapa.Stop();
                 rawtapa.Image = Properties.Resources.burnedtapa;
                 SetProgressBarColor(pbTapaProgress, PBST_ERROR);
@@ -679,6 +689,7 @@ namespace KNAK
                     pares1.Visible = true;
                     pares1.Image = Properties.Resources.pares;
                     pares1.BringToFront();
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
                 }
                 else if (!pares2.Visible)
                 {
@@ -686,6 +697,7 @@ namespace KNAK
                     pares2.Visible = true;
                     pares2.Image = Properties.Resources.pares;
                     pares2.BringToFront();
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
                 }
                 else if (!pares3.Visible)
                 {
@@ -693,6 +705,7 @@ namespace KNAK
                     pares3.Visible = true;
                     pares3.Image = Properties.Resources.pares;
                     pares3.BringToFront();
+                    lblParesStatus.Text = paresServingsLeft + "/3 bowls";
                 }
                 else
                 {
@@ -703,11 +716,13 @@ namespace KNAK
                 if (paresServingsLeft <= 0)
                 {
                     parespot.Image = Properties.Resources.emptypot;
+                    lblParesStatus.Text = "Click to refill!";
                 }
             }
             else if (paresServingsLeft <= 0 && !isCookingPares)
             {
                 isCookingPares = true;
+                lblParesStatus.Text = "Refilling...";
                 paresProgressValue = 0;
                 pbParesProgress.Value = 0;
                 SetProgressBarColor(pbParesProgress, PBST_NORMAL);
@@ -730,6 +745,7 @@ namespace KNAK
                 timerPares.Stop();
                 isCookingPares = false;
                 paresServingsLeft = 3;
+                lblParesStatus.Text = paresServingsLeft + "/3 bowls";
 
                 parespot.Image = Properties.Resources.parespot;
                 pbParesProgress.Visible = false;
@@ -743,6 +759,8 @@ namespace KNAK
                 SendMessage(pb.Handle, PBM_SETSTATE, (IntPtr)state, IntPtr.Zero);
             }
         }
+
+        // --- SCORE SYSTEM ---
 
         private void UpdateScoreDisplay()
         {
@@ -758,6 +776,36 @@ namespace KNAK
             {
                 GameData.EndlessHighScore = currentScore;
                 lblHighscore.Text = "₱" + GameData.EndlessHighScore.ToString("N0");
+            }
+        }
+
+        // Halimbawa ito ng method o event kapag nag-walkout ang isang customer
+        private void CustomerWalkout()
+        {
+            strikeCount++;
+
+            // Baguhin ang circle creatives depende sa bilang ng strike
+            if (strikeCount == 1)
+            {
+                pbCircle1.Image = Properties.Resources.red_x; // O kung ano mang creative asset ng strike mo
+            }
+            else if (strikeCount == 2)
+            {
+                pbCircle2.Image = Properties.Resources.red_x;
+            }
+            else if (strikeCount >= 3)
+            {
+                pbCircle3.Image = Properties.Resources.red_x;
+
+                // --- GAME OVER LOGIC ---
+                timerEgg.Stop();
+                timerTapa.Stop();
+                timerRice.Stop();
+                timerPares.Stop();
+
+                MessageBox.Show("GAME OVER! Umabot sa 3 ang walkout/strikes mo.\nKabuuang Nakuha Mo: ₱" + currentScore.ToString("N0"), "Laro Tapos Na", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Pwede mo rito ilagay ang pagbalik sa Main Menu o pag-reset
             }
         }
 
